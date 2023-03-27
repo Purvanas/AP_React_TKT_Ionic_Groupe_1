@@ -30,14 +30,14 @@ const Register = () => {
     };  
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const password = document.getElementById("Password")
         const passwordCheck = document.getElementById("PasswordCheck")
         if(password.value === passwordCheck.value){
             console.log('formData : ',formData)
             console.log("admin : ", checked)
-            postUser(formData,checked);
+            console.log(await postUser(checked))
             
         } else{
             alert("Les mots de passe doivent être identiques")
@@ -45,7 +45,7 @@ const Register = () => {
 
     }
 
-    const fonctions = [{label:"fonction1"},{label:"fonction2"}] //TEMPORAIRES A REMPLACER PAR UN APPEL D API
+    /*const fonctions = [{label:"fonction1"},{label:"fonction2"}] //TEMPORAIRES A REMPLACER PAR UN APPEL D API*/
 
    /* const getFonction = async() =>{
         let options = [];
@@ -56,26 +56,48 @@ const Register = () => {
         })
     }*/
 
-    const postUser = (user,admin) => {
+    const postUser2 = async (admin) => {
         const body = {
-            Nom : user.Nom,
-            Prenom : user.Prenom,
-            Identifiant: user.Identifiant,
-            mdp: user.Password,
-            idFonction: user.Fonction,
+            Nom : FormData.Nom,
+            Prenom : FormData.Prenom,
+            Identifiant: FormData.Identifiant,
+            mdp: FormData.Password,
+            idFonction: FormData.Fonction,
+            NumTel:FormData.Telephone,
             Admin:admin
         };
-        console.log('body : ',body)
-        axios.post(api+"users", { //FONCTION AXIO.POST
-                body
-              })
-              .then(function (response) {
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+        const bodyData = JSON.stringify(body)
+        const res = await axios.post(api+"users", bodyData, {
+        headers: {
+            // Overwrite Axios's automatically set Content-Type
+            'Content-Type': 'application/json'
         }
+        });
+        console.log("res",res)
+    };
+
+    const postUser = async (admin) => {
+        const body = {
+            Nom : FormData.Nom,
+            Prenom : FormData.Prenom,
+            Identifiant: FormData.Identifiant,
+            mdp: FormData.Password,
+            idFonction: FormData.Fonction,
+            NumTel:FormData.Telephone,
+            Admin:admin
+        };
+        axios(api+"users", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(body)
+            }).then(res => {
+                console.log(res)
+            }).catch(err => {
+                console.log(err)
+            })
+    }
 
     const FormRegister = () =>{ //
         return(

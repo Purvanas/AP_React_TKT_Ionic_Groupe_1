@@ -26,15 +26,17 @@ app.get("/users", (req, res) => {
 
 
 app.post('/users', (req,res) => {    
+    console.log("Body : ",req.body)
     const data = {
         Nom : req.body.Nom,
         Prenom : req.body.Prenom,
         Identifiant: req.body.Identifiant,
         mdp: req.body.Password,
         idFonction: req.body.Fonction,
+        NumTel: req.body.NumTel,
         Admin:req.body.Admin
     }
-    let sql = 'INSERT INTO utilisateur(Nom,Prenom,Identifiant,mdp,idFonction,Admin) VALUES (?,?,?,?,?,?)';
+    let sql = 'INSERT INTO utilisateur(Nom,Prenom,Identifiant,mdp,idFonction,NumTel,Admin) VALUES (?,?,?,?,?,?,?)';
     config.query(sql, Object.values(data), (err) =>{
         if(err){
             console.log(data);
