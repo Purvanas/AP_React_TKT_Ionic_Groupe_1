@@ -16,6 +16,14 @@ app.get("/ListSupport", (req, res) => {
     })
 });
 
+app.get("/UsersMissions", (req, res) => {
+    let sql = "SELECT id FROM utilisateur";
+    config.query(sql,(err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
 
 app.post('/add/jeux', (req,res) => {    
     const data = {
