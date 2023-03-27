@@ -58,24 +58,23 @@ const Register = () => {
 
     const postUser = async () => {
         const body = {
-            Nom : FormData.Nom,
-            Prenom : FormData.Prenom,
-            Identifiant: FormData.Identifiant,
-            mdp: FormData.Password,
-            idFonction: FormData.Fonction,
-            NumTel:FormData.Telephone,
-            Admin:checked
+          Nom : FormData.Nom,
+          Prenom : FormData.Prenom,
+          Identifiant: FormData.Identifiant,
+          mdp: FormData.Password,
+          idFonction: FormData.Fonction,
+          NumTel:FormData.Telephone,
+          Admin:checked
         };
-        await axios.post(api+"users", body)
-        /*const bodyData = JSON.stringify(body)
-        const res = await axios.post(api+"users", bodyData, {
-        headers: {
-            // Overwrite Axios's automatically set Content-Type
+        const bodyData = JSON.stringify(body);
+        const config = {
+          headers: {
             'Content-Type': 'application/json'
-        }
-        });
-        console.log("res",res)*/
-    };
+          }
+        };
+        const response = await axios.post(api+"users", bodyData, config);
+        console.log(response);
+      };
 
     const postUser2 = async (admin) => {
         const body = {
