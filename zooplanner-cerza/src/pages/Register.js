@@ -14,7 +14,7 @@ const Register = () => {
         Nom: '',
         Prenom: '',
         Telephone:'',
-        Fonction:'',
+        Fonction:'1',
         Identifiant:'',
         Password:'',
     });
@@ -37,7 +37,7 @@ const Register = () => {
         if(password.value === passwordCheck.value){
             console.log('formData : ',formData)
             console.log("admin : ", checked)
-            console.log(await postUser(checked))
+            console.log(await postUser())
             
         } else{
             alert("Les mots de passe doivent être identiques")
@@ -56,7 +56,7 @@ const Register = () => {
         })
     }*/
 
-    const postUser2 = async (admin) => {
+    const postUser = async () => {
         const body = {
             Nom : FormData.Nom,
             Prenom : FormData.Prenom,
@@ -64,19 +64,20 @@ const Register = () => {
             mdp: FormData.Password,
             idFonction: FormData.Fonction,
             NumTel:FormData.Telephone,
-            Admin:admin
+            Admin:checked
         };
-        const bodyData = JSON.stringify(body)
+        await axios.post(api+"users", body)
+        /*const bodyData = JSON.stringify(body)
         const res = await axios.post(api+"users", bodyData, {
         headers: {
             // Overwrite Axios's automatically set Content-Type
             'Content-Type': 'application/json'
         }
         });
-        console.log("res",res)
+        console.log("res",res)*/
     };
 
-    const postUser = async (admin) => {
+    const postUser2 = async (admin) => {
         const body = {
             Nom : FormData.Nom,
             Prenom : FormData.Prenom,
