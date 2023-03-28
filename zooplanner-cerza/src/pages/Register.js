@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import CryptoJS from 'crypto-js';
 
 import "../css/Register.scss"
 import "../css/style.scss"
@@ -7,7 +8,7 @@ import "../css/style.scss"
 
 const Register = () => {
    
-
+    const salt = "hxjafvjwxcvjkwxhkcjvh";
     const api = "http://localhost:8080/";
 
     const [formData, setFormData] = useState({
@@ -45,60 +46,56 @@ const Register = () => {
 
     }
 
-    /*const fonctions = [{label:"fonction1"},{label:"fonction2"}] //TEMPORAIRES A REMPLACER PAR UN APPEL D API*/
+    
+ 
+    function hashPassword(password, salt) {
+        var hash = CryptoJS.SHA256(password + salt);
+        return hash.toString(CryptoJS.enc.Hex);
+}
 
-   /* const getFonction = async() =>{
-        let options = [];
-        fonctions.map((fac)=>{
-            options = options.push((<option>{fac.label}</option>))
-            console.log(options.toString())
-            return (options)
-        })
-    }*/
+const getFonction = async () => {
+    let options = await axios.get(api+"fonctions")
+    const fonctions = options.data.results
+    console.log("fonctions : ", fonctions)
+  
+    let optionsList = ""
+    for (let i = 0; i < fonctions.length; i++) {
+      optionsList += <option>${fonctions[i].Libelle}</option>
+    }
+  
+    return optionsList
+}
 
     const postUser = async () => {
         const body = {
-          Nom : FormData.Nom,
-          Prenom : FormData.Prenom,
-          Identifiant: FormData.Identifiant,
-          mdp: FormData.Password,
-          idFonction: FormData.Fonction,
-          NumTel:FormData.Telephone,
+          Nom : formData.Nom,
+          Prenom : formData.Prenom,
+          Identifiant: formData.Identifiant,
+          mdp: await hashPassword(formData.Password,salt),
+          idFonction: formData.Fonction,
+          NumTel:formData.Telephone,
           Admin:checked
-        };
-        const bodyData = JSON.stringify(body);
+        };      
         const config = {
           headers: {
             'Content-Type': 'application/json'
           }
         };
-        const response = await axios.post(api+"users", bodyData, config);
+        const response = await axios.post(api+"users", body, config);
         console.log(response);
+        setFormData({
+            Nom: '',
+            Prenom: '',
+            Telephone:'',
+            Fonction:'1',
+            Identifiant:'',
+            Password:''
+        })
+        document.getElementById('PasswordCheck').value=""
       };
 
-    const postUser2 = async (admin) => {
-        const body = {
-            Nom : FormData.Nom,
-            Prenom : FormData.Prenom,
-            Identifiant: FormData.Identifiant,
-            mdp: FormData.Password,
-            idFonction: FormData.Fonction,
-            NumTel:FormData.Telephone,
-            Admin:admin
-        };
-        axios(api+"users", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify(body)
-            }).then(res => {
-                console.log(res)
-            }).catch(err => {
-                console.log(err)
-            })
-    }
 
+    
     const FormRegister = () =>{ //
         return(
             <div id="registerForm">
@@ -116,8 +113,7 @@ const Register = () => {
                     <div className="formDataRow"><label htmlFor="Fonction">Fonction :</label>
                     
                     <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={formData.Fonction} onChange={handleChange}>
-                        <option key={1}>1</option>
-                        <option key={2}>2</option>
+                        {getFonction()}
                     </select></div>
 
                     <div className="formDataRow"><label htmlFor="Identifiant">Identifiant :</label>
@@ -137,6 +133,7 @@ const Register = () => {
             </div>
         )
     }
+    
     return (
         <div>
             {FormRegister()}

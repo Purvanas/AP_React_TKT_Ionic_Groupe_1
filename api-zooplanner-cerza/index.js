@@ -14,9 +14,18 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
   });
 
-
+//REOUTES GETS ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
 app.get("/users", (req, res) => {
     let sql = "SELECT id,Nom,Prenom FROM utilisateur";
+    config.query(sql,(err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
+
+app.get("/fonctions", (req, res) => {
+    let sql = "SELECT id,Libelle FROM fonction";
     config.query(sql,(err, results) =>{
         if(err) throw err
         console.log(results);
@@ -31,8 +40,8 @@ app.post('/users', (req,res) => {
         Nom : req.body.Nom,
         Prenom : req.body.Prenom,
         Identifiant: req.body.Identifiant,
-        mdp: req.body.Password,
-        idFonction: req.body.Fonction,
+        mdp: req.body.mdp,
+        idFonction: req.body.idFonction,
         NumTel: req.body.NumTel,
         Admin:req.body.Admin
     }
