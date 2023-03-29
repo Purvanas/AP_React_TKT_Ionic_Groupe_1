@@ -1,10 +1,10 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'',
-    database:'jeux',
+    database:'bdd-zooplanner',
     port:'3306'
 })
 

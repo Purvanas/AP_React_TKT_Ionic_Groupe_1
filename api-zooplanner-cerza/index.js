@@ -1,14 +1,31 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+const config = require('./bdd.js');
+
+app.use(express.json());
+app.use(
+    express.urlencoded({
+        extended:true,
+    })
+);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
   });
 
+//REOUTES GETS ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
+app.get("/users", (req, res) => {
+    let sql = "SELECT id,Nom,Prenom FROM utilisateur";
+    config.query(sql,(err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
 
-app.get("/ListSupport", (req, res) => {
-    let sql = "SELECT id,nom FROM support";
+app.get("/fonctions", (req, res) => {
+    let sql = "SELECT id,Libelle FROM fonction";
     config.query(sql,(err, results) =>{
         if(err) throw err
         console.log(results);
@@ -17,16 +34,22 @@ app.get("/ListSupport", (req, res) => {
 });
 
 
-app.post('/add/jeux', (req,res) => {    
+app.post('/users', (req,res) => {    
+    console.log("Body : ",req.body)
     const data = {
-        nom : req.body.nom,
-        idSupport : req.body.idSupport,
-        idGenre : req.body.idSupport
+        Nom : req.body.Nom,
+        Prenom : req.body.Prenom,
+        Identifiant: req.body.Identifiant,
+        mdp: req.body.mdp,
+        idFonction: req.body.idFonction,
+        NumTel: req.body.NumTel,
+        Admin:req.body.Admin
     }
-    let sql = 'INSERT INTO jeux(nom,idSupport,idGenre) VALUES (?,?,?)';
+    let sql = 'INSERT INTO utilisateur(Nom,Prenom,Identifiant,mdp,idFonction,NumTel,Admin) VALUES (?,?,?,?,?,?,?)';
     config.query(sql, Object.values(data), (err) =>{
         if(err){
-            res.json({message : "fail", Error : err.code});
+            console.log(data);
+            res.json({message : "fail", Error : err});
         }else{
             res.json({message : "nice", Data : data});
         }
