@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import axios from "axios";
 import CryptoJS from 'crypto-js';
 
@@ -15,11 +15,11 @@ const Register = () => {
         Nom: '',
         Prenom: '',
         Telephone:'',
-        Fonction:'1',
         Identifiant:'',
-        Password:'',
+        Password:''
     });
     const [checked, setChecked] = React.useState(false);
+    
 
     const handleCheck = () => {
         setChecked(!checked);
@@ -36,14 +36,10 @@ const Register = () => {
         const password = document.getElementById("Password")
         const passwordCheck = document.getElementById("PasswordCheck")
         if(password.value === passwordCheck.value){
-            console.log('formData : ',formData)
-            console.log("admin : ", checked)
-            console.log(await postUser())
-            
+            await postUser()
         } else{
             alert("Les mots de passe doivent être identiques")
         }
-
     }
 
     
@@ -53,18 +49,22 @@ const Register = () => {
         return hash.toString(CryptoJS.enc.Hex);
 }
 
+const [selectedOption, setSelectedOption] = useState(null);
+const [optionsList, setOptionsList] = useState([]);
+
 const getFonction = async () => {
-    let options = await axios.get(api+"fonctions")
-    const fonctions = options.data.results
-    console.log("fonctions : ", fonctions)
-  
-    let optionsList = ""
-    for (let i = 0; i < fonctions.length; i++) {
-      optionsList += <option>${fonctions[i].Libelle}</option>
-    }
-  
-    return optionsList
-}
+  try {
+    const options = await axios.get(api + "fonctions");
+    const fonctions = options.data.results;
+
+    const optionsList = fonctions.map((fonction) => {
+      return { value: fonction.id, label: fonction.Libelle };
+    });
+    setOptionsList(optionsList);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
     const postUser = async () => {
         const body = {
@@ -72,7 +72,7 @@ const getFonction = async () => {
           Prenom : formData.Prenom,
           Identifiant: formData.Identifiant,
           mdp: await hashPassword(formData.Password,salt),
-          idFonction: formData.Fonction,
+          idFonction: selectedOption,
           NumTel:formData.Telephone,
           Admin:checked
         };      
@@ -87,15 +87,18 @@ const getFonction = async () => {
             Nom: '',
             Prenom: '',
             Telephone:'',
-            Fonction:'1',
             Identifiant:'',
             Password:''
         })
         document.getElementById('PasswordCheck').value=""
+        setOptionsList([])
       };
 
 
-    
+    useEffect(() => {
+        getFonction();
+    }, []);
+
     const FormRegister = () =>{ //
         return(
             <div id="registerForm">
@@ -112,9 +115,16 @@ const getFonction = async () => {
 
                     <div className="formDataRow"><label htmlFor="Fonction">Fonction :</label>
                     
-                    <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={formData.Fonction} onChange={handleChange}>
-                        {getFonction()}
-                    </select></div>
+                    <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+                        <option value="">Sélectionner une option</option>
+                        {optionsList.map((option) => (
+                            <option key={option.value} value={option.value}>
+                            {option.label}
+                            </option>
+                        ))}
+                    </select>
+                    
+                    </div>
 
                     <div className="formDataRow"><label htmlFor="Identifiant">Identifiant :</label>
                     <input className="inputTextForm" type="text" id="Identifiant" name="Identifiant" value={formData.Identifiant} onChange={handleChange} required/></div>
