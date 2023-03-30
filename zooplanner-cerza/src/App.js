@@ -1,5 +1,6 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Accueil from "./pages/Accueil";
+import MissionAdmin from "./pages/MissionAdmin";
 import Register from "./pages/Register";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Accueil/>}></Route>
         <Route path="/register" element={<Register/>}></Route>
+        <Route path="/MissionAdmin" element={<MissionAdmin/>}></Route>
       </Routes>
     </BrowserRouter>
   );

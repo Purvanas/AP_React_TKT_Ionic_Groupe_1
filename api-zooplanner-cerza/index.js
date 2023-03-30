@@ -1,8 +1,10 @@
 const express = require("express");
+var cors = require('cors')
 const app = express();
 const port = 8080;
 const config = require('./bdd.js');
 
+app.use(cors())
 app.use(express.json());
 app.use(
     express.urlencoded({
@@ -14,7 +16,7 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
   });
 
-//REOUTES GETS ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
+//REOUTES GET ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
 app.get("/users", (req, res) => {
     let sql = "SELECT id,Nom,Prenom FROM utilisateur";
     config.query(sql,(err, results) =>{
@@ -32,6 +34,16 @@ app.get("/fonctions", (req, res) => {
         res.json({results});
     })
 });
+
+app.get("/admin/missions", (req, res) => {let sql = "SELECT mission.id, mission.idEnclos, mission.idAnimal, animal.Nom as nomAnimal, idUtilisateur, utilisateur.Nom as nomUser, utilisateur.Prenom as prenomUser, Description FROM mission left join animal on animal.id = idAnimal inner join utilisateur on idUtilisateur = utilisateur.id";
+    config.query(sql,(err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
+
+//REOUTES POST ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
 
 
 app.post('/users', (req,res) => {    
