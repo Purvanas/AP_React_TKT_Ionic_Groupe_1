@@ -116,7 +116,7 @@ const getFonction = async () => {
                     <div className="formDataRow"><label htmlFor="Fonction">Fonction :</label>
                     
                     <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-                        <option value="">Sélectionner une option</option>
+                        <option value="">Sélectionner une fonction</option>
                         {optionsList.map((option) => (
                             <option key={option.value} value={option.value}>
                             {option.label}
