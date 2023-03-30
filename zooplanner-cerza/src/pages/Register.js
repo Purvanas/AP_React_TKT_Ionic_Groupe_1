@@ -147,6 +147,7 @@ const getFonction = async () => {
     return (
         <div>
             {FormRegister()}
+            {getFonction()}
         </div>
     );
 };
