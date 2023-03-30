@@ -19,6 +19,8 @@ const Register = () => {
         Password:''
     });
     const [checked, setChecked] = React.useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [optionsList, setOptionsList] = useState([]);
     
 
     const handleCheck = () => {
@@ -35,7 +37,8 @@ const Register = () => {
         event.preventDefault();
         const password = document.getElementById("Password")
         const passwordCheck = document.getElementById("PasswordCheck")
-        if(password.value === passwordCheck.value){
+        if(selectedOption === null){alert("Vous devez selectionner une fonction")}
+        else if(password.value === passwordCheck.value){
             await postUser()
         } else{
             alert("Les mots de passe doivent être identiques")
@@ -49,8 +52,7 @@ const Register = () => {
         return hash.toString(CryptoJS.enc.Hex);
 }
 
-const [selectedOption, setSelectedOption] = useState(null);
-const [optionsList, setOptionsList] = useState([]);
+
 
 const getFonction = async () => {
   try {
@@ -147,7 +149,6 @@ const getFonction = async () => {
     return (
         <div>
             {FormRegister()}
-            {getFonction()}
         </div>
     );
 };
