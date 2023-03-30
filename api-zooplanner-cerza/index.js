@@ -1,8 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 8080;
 const config = require('./bdd.js');
 
+app.use(cors);
 app.use(express.json());
 app.use(
     express.urlencoded({
@@ -31,6 +33,23 @@ app.get("/fonctions", (req, res) => {
         console.log(results);
         res.json({results});
     })
+});
+
+app.post("/auth", (req, res) => {
+    const data = {
+        identifiant : req.body.identifiant,
+        mdp : req.body.mdp
+    }
+    let sql = "SELECT identifiant, mdp FROM utilisateur WHERE identifiant = ? and mdp = ?";
+    config.query(sql, Object.values(data), (err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+    let verif = true;
+    if(Empty(results)){
+
+    }
 });
 
 
