@@ -10,6 +10,7 @@ const Register = () => {
    
     const salt = "hxjafvjwxcvjkwxhkcjvh";
     const api = "http://localhost:8080/";
+    const re = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/);
 
     const [formData, setFormData] = useState({
         Nom: '',
@@ -38,6 +39,7 @@ const Register = () => {
         const password = document.getElementById("Password")
         const passwordCheck = document.getElementById("PasswordCheck")
         if(selectedOption === null){alert("Vous devez selectionner une fonction")}
+        else if(!password.value.match(re)){alert("Le mot de passe doit faire 12 caractère des long, doit contenir des majuscules, des minuscules et des caractères spéciaux")}
         else if(password.value === passwordCheck.value){
             await postUser()
         } else{
