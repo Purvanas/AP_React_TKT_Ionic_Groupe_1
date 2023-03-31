@@ -35,7 +35,25 @@ app.get("/fonctions", (req, res) => {
     })
 });
 
-app.get("/admin/missions", (req, res) => {let sql = "SELECT mission.id, mission.idEnclos, mission.idAnimal, animal.Nom as nomAnimal, idUtilisateur, utilisateur.Nom as nomUser, utilisateur.Prenom as prenomUser, Description FROM mission left join animal on animal.id = idAnimal inner join utilisateur on idUtilisateur = utilisateur.id";
+app.get("/animaux", (req, res) => {
+    let sql = "SELECT id, idEnclos, Nom FROM animal";
+    config.query(sql,(err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
+
+app.get("/enclos", (req, res) => {
+    let sql = "SELECT id FROM enclos";
+    config.query(sql,(err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
+
+app.get("/admin/missions", (req, res) => {let sql = "SELECT mission.id, mission.idEnclos, mission.idAnimal, animal.Nom as nomAnimal, idUtilisateur, utilisateur.Nom as nomUser, utilisateur.Prenom as prenomUser, Description, DateHeureValidation, DateHeureAttribution FROM mission left join animal on animal.id = idAnimal inner join utilisateur on idUtilisateur = utilisateur.id";
     config.query(sql,(err, results) =>{
         if(err) throw err
         console.log(results);
