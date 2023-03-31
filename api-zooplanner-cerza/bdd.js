@@ -6,6 +6,6 @@ const connection = mysql.createConnection({
     password:'',
     database:'bdd-zooplanner',
     port:'3306'
-})
+    })
 
 module.exports = connection

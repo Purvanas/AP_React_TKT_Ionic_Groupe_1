@@ -2,18 +2,15 @@ import React, { useState, useEffect  } from 'react';
 import axios from "axios";
 import CryptoJS from 'crypto-js';
 
-import FrmConnexion from '../components/FrmConnexion.js';
-
 import "../css/style.scss"
 
-const Login = () => {
+const Accueil = () => {
     return (
         <div>
-            <h1>Connexion</h1>
-            <FrmConnexion/>
+            <h1>AAAAAAAAAAAAAAAAAAAA</h1>
         </div>
     )
 
 };
 
-export default Login;
+export default Accueil;

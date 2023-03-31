@@ -25,6 +25,11 @@ app.get("/users", (req, res) => {
         res.json({results});
     })
 });
+// test 
+app.get("/", (req, res) => {
+    res.json({ message: "ok" });
+  });
+  
 
 app.get("/fonctions", (req, res) => {
     let sql = "SELECT id,Libelle FROM fonction";
@@ -36,22 +41,27 @@ app.get("/fonctions", (req, res) => {
 });
 
 app.post("/auth", (req, res) => {
+    console.log("connection");
     const data = {
         identifiant : req.body.identifiant,
         mdp : req.body.mdp
     }
     let sql = "SELECT identifiant, mdp FROM utilisateur WHERE identifiant = ? and mdp = ?";
     config.query(sql, Object.values(data), (err, results) =>{
+        if(err) throw err;
+        res.json({results});
+    })
+});
+
+
+app.get("/connectedUser", (req, res) => {
+    let sql = "SELECT utilisateur.id, Nom, Prenom, NumTel, Libelle, Admin FROM utilisateur inner join fonction on fonction.id = idFonction where identifiant = ? and mdp = ?";
+    config.query(sql,(err, results) =>{
         if(err) throw err
         console.log(results);
         res.json({results});
     })
-    let verif = true;
-    if(Empty(results)){
-
-    }
 });
-
 
 app.post('/users', (req,res) => {    
     console.log("Body : ",req.body)
