@@ -10,13 +10,34 @@ const MissionAdmin = () => {
     const [missionList, setMissionList] = useState([]);
     const [displayMissionList, setDisplayMissionList] = useState([]);
 
+    const [selectedEnclos, setSelectedEnclos] = useState(null);
+    const [enclosList, setEnclosList] = useState([]);
+
+    const [selectedAnimaux, setSelectedAnimaux] = useState(null);
+    const [animauxList, setAnimauxList] = useState([]);
+
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [usersList, setUsersList] = useState([]);
+
     const getData = async () => {
         const enclos = await axios.get(api+"enclos");
         const animaux = await axios.get(api+"animaux");
         const utilisateurs = await axios.get(api+"users")
-        console.log("enclos : ",enclos.data.results)
-        console.log("animaux : ",animaux.data.results)
-        console.log("utilisateurs : ",utilisateurs.data.results)
+
+        const enclosList = enclos.data.results.map((fonction) => {
+            return { value: fonction.id, label: fonction.id };
+        });
+        setEnclosList(enclosList);
+
+        const animauxList = animaux.data.results.map((fonction) => {
+            return { value: fonction.id, nom: fonction.Nom, enclos: fonction.idEnclos };
+        });
+        setAnimauxList(animauxList);
+        
+        const ursersList = utilisateurs.data.results.map((fonction) => {
+            return { value: fonction.id, nom: fonction.Nom, prenom: fonction.Prenom };
+        });
+        setUsersList(ursersList);
     }
 
     const getMissions = async () => {
@@ -43,20 +64,37 @@ const MissionAdmin = () => {
 
     const ajoutMission = () => {
         return(
+            <form onSubmit={handleSubmit}>
             <div key={"new"} className="widgetMission">
                 <div className='headerWidgetMission'>
-                    <div id="headerWidgetMissionText">
-                        <select>
+                    <div id="headerWidgetMissionText">     
+                        <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
                             <option value="">Personnel</option>
-                        </select></div> 
+                            {usersList.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                {option.nom} {option.prenom}
+                                </option>
+                            ))}
+                        </select>
+                        </div> 
                     <div id="headerWidgetMissionText">
-                        <select>
+                        <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedEnclos} onChange={(e) => setSelectedEnclos(e.target.value)}>
                             <option value="">n° Enclos</option>
+                            {enclosList.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                {option.label}
+                                </option>
+                            ))}
                         </select>
                     </div>
-                    <div>
-                        <select>
+                    <div id="headerWidgetMissionText">
+                        <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedAnimaux} onChange={(e) => setSelectedAnimaux(e.target.value)}>
                             <option value="">Animal</option>
+                            {animauxList.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                {option.nom}
+                            </option>
+                            ))}
                         </select>
                     </div>
                     <div id="headerWidgetMissionText"></div>
@@ -68,7 +106,19 @@ const MissionAdmin = () => {
                     <button id="btnMissionWidget">Créer</button>
                 </div>
             </div>
+            </form>
         )
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log("Animal : ",selectedAnimaux)
+        console.log("Enclos : ",selectedEnclos)
+        console.log("User : ",selectedUser)
+        const currentDate = new Date()
+        const timestamp = currentDate.getTime()
+        console.log("date : ", timestamp)
+        console.log(document.getElementById("textareaMission").value)
     }
 
 
@@ -90,7 +140,9 @@ const MissionAdmin = () => {
 
     return (
         <div>
-            <h1>Mission ! (admin)</h1>
+            <h1>Liste des missions</h1>
+            <label for="checkbocMission">Mission terminées</label>
+            <input type="checkbox" id="checkbocMission" onChange={console.log("click")} />
             {mission()}
         </div>
     );
