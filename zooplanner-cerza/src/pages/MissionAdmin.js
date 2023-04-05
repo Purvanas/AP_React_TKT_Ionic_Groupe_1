@@ -19,11 +19,21 @@ const MissionAdmin = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [usersList, setUsersList] = useState([]);
 
+    const [showValidatedMissions, setShowValidatedMissions] = useState(false);
+
+
 
     const switchMission = () => {
-        let missionsss = (missionList.filter(mission => mission.DateHeureValidation == null));
-        console.log(missionsss)
-    }
+        const filteredMissions = missionList.filter((mission) => {
+          if (showValidatedMissions) {
+            return mission.DateHeureValidation !== null;
+          } else {
+            return mission.DateHeureValidation === null;
+          }
+        });
+        setDisplayMissionList(filteredMissions);
+        setShowValidatedMissions(!showValidatedMissions);
+    };
 
     const getData = async () => {
         const enclos = await axios.get(api+"enclos");
@@ -145,16 +155,16 @@ const MissionAdmin = () => {
     }
 
 
-    const mission = () =>{
-        return(
-            <div className="TableauMissions" id="TableauMissions">
-                {ajoutMission()}
-                {displayMissionList.map((mission) => (
-                    <MissionCardAdmin mission={mission} />
-                ))}
-        </div>
-        )
-    }
+    const mission = () => {
+        return (
+          <div className="TableauMissions" id="TableauMissions">
+            {displayMissionList.map((mission) => (
+              <MissionCardAdmin mission={mission} />
+            ))}
+            {ajoutMission()}
+          </div>
+        );
+    };
 
     useEffect(() => {
         getMissions();
@@ -163,9 +173,11 @@ const MissionAdmin = () => {
 
     return (
         <div>
-            <h1>Liste des missions</h1>
-            <button onSubmit={switchMission()}>mission</button>
-            {mission()}
+          <h1>Liste des missions</h1>
+          <button onClick={switchMission} id="btnMissionWidget" className='btnMissionWidget'>
+            {showValidatedMissions ?  "Voir missions validées" : "Voir missions en attente" }
+          </button>
+          {mission()}
         </div>
     );
 };
