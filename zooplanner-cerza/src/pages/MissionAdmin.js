@@ -19,6 +19,12 @@ const MissionAdmin = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [usersList, setUsersList] = useState([]);
 
+
+    const switchMission = () => {
+        let missionsss = (missionList.filter(mission => mission.DateHeureValidation == null));
+        console.log(missionsss)
+    }
+
     const getData = async () => {
         const enclos = await axios.get(api+"enclos");
         const animaux = await axios.get(api+"animaux");
@@ -68,8 +74,8 @@ const MissionAdmin = () => {
             <div key={"new"} className="widgetMission">
                 <div className='headerWidgetMission'>
                     <div id="headerWidgetMissionText">     
-                        <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
-                            <option value="">Personnel</option>
+                        <select className="inputComboBoxForm" type="select" id="Personnel" name="Personnel" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+                            <option value={null}>Personnel</option>
                             {usersList.map((option) => (
                                 <option key={option.value} value={option.value}>
                                 {option.nom} {option.prenom}
@@ -78,8 +84,8 @@ const MissionAdmin = () => {
                         </select>
                         </div> 
                     <div id="headerWidgetMissionText">
-                        <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedEnclos} onChange={(e) => setSelectedEnclos(e.target.value)}>
-                            <option value="">n° Enclos</option>
+                        <select className="inputComboBoxForm" type="select" id="Enclos" name="Enclos" value={selectedEnclos} onChange={(e) => setSelectedEnclos(e.target.value)}>
+                            <option value={null}>n° Enclos</option>
                             {enclosList.map((option) => (
                                 <option key={option.value} value={option.value}>
                                 {option.label}
@@ -88,8 +94,8 @@ const MissionAdmin = () => {
                         </select>
                     </div>
                     <div id="headerWidgetMissionText">
-                        <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedAnimaux} onChange={(e) => setSelectedAnimaux(e.target.value)}>
-                            <option value="">Animal</option>
+                        <select className="inputComboBoxForm" type="select" id="Animal" name="Animal" value={selectedAnimaux} onChange={(e) => setSelectedAnimaux(e.target.value)}>
+                            <option value={null}>Animal</option>
                             {animauxList.map((option) => (
                                 <option key={option.value} value={option.value}>
                                 {option.nom}
@@ -112,23 +118,40 @@ const MissionAdmin = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Animal : ",selectedAnimaux)
-        console.log("Enclos : ",selectedEnclos)
-        console.log("User : ",selectedUser)
         const currentDate = new Date()
-        const timestamp = currentDate.getTime()
-        console.log("date : ", timestamp)
-        console.log(document.getElementById("textareaMission").value)
+
+        const body = {
+            idEnclos : selectedEnclos,
+            idAnimal : selectedAnimaux,
+            idUtilisateur: selectedUser,
+            Description: document.getElementById("textareaMission").value,
+            DateHeureAttribution: currentDate.toISOString().slice(0, 19).replace('T', ' ')
+          };      
+          const config = {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          };
+        await axios.post(api+"missions", body, config);
+        setSelectedAnimaux(null);
+        document.getElementById('Personnel').selectedIndex = 0
+        setSelectedEnclos(null);
+        document.getElementById('Animal').selectedIndex = 0
+        setSelectedUser(null);
+        document.getElementById('Enclos').selectedIndex = 0
+
+        document.getElementById("textareaMission").value = "";
+        getMissions();
     }
 
 
     const mission = () =>{
         return(
             <div className="TableauMissions" id="TableauMissions">
-            {displayMissionList.map((mission) => (
-                <MissionCardAdmin mission={mission} />
-            ))}
-            {ajoutMission()}
+                {ajoutMission()}
+                {displayMissionList.map((mission) => (
+                    <MissionCardAdmin mission={mission} />
+                ))}
         </div>
         )
     }
@@ -141,8 +164,7 @@ const MissionAdmin = () => {
     return (
         <div>
             <h1>Liste des missions</h1>
-            <label for="checkbocMission">Mission terminées</label>
-            <input type="checkbox" id="checkbocMission" onChange={console.log("click")} />
+            <button onSubmit={switchMission()}>mission</button>
             {mission()}
         </div>
     );

@@ -86,6 +86,26 @@ app.post('/users', (req,res) => {
     })
 })
 
+app.post('/missions', (req,res) => {    
+    console.log("Body : ",req.body)
+    const data = {
+        idEnclos : req.body.idEnclos,
+        idAnimal : req.body.idAnimal,
+        idUtilisateur: req.body.idUtilisateur,
+        Description: req.body.Description,
+        DateHeureAttribution: req.body.DateHeureAttribution
+    }
+    let sql = "INSERT INTO `mission` (`idEnclos`, `idAnimal`, `idUtilisateur`, `Description`, `DateHeureAttribution`) VALUES (?,?,?,?,?); ";
+    config.query(sql, Object.values(data), (err) =>{
+        if(err){
+            console.log(data);
+            res.json({message : "fail", Error : err});
+        }else{
+            res.json({message : "nice", Data : data});
+        }
+    })
+})
+
 
 app.delete("/del/jeux/:id", (req, res) => {
     let sql = `DELETE FROM jeux where id = ${req.params.id}`;

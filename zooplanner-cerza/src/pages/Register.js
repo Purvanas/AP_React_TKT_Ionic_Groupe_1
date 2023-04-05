@@ -95,7 +95,8 @@ const getFonction = async () => {
             Password:''
         })
         document.getElementById('PasswordCheck').value=""
-        setOptionsList([])
+        document.getElementById('Fonction').selectedIndex = 0
+        setSelectedOption(null)
       };
 
 
