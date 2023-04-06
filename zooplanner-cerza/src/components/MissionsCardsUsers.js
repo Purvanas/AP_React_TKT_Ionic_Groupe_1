@@ -1,35 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import axios from 'axios';
 
+const api = "http://localhost:8080/";
+const idUtilisateur = 5;
 const MissionsCardsUsers = () => {
-    
+    const [missions, setMissions] = useState([]);
 
+    useEffect(() => {
+      try {     
+      const fetchData = async () => {
+        const response = await axios.get(api +`UsersMissions?idUtilisateur=${idUtilisateur}`);
+        setMissions(response.data.results);
+        console.log(response.data.results);
+      };
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+    }, []);
+   
     return (
-        <div className='CardMissionsUsersMainDiv'>
-            <div className='CardMissionsUsersHeadDiv'>
-                <td className='CardMissionsUsersTdDate'>
-                    <a>Date : 16/07/1995</a>
-                </td>
-                <td className='CardMissionsUsersTdEnclos'>
-                    <a>Enclos : 6</a>
-                </td>
-                <td className='CardMissionsUsersTdEcspeces'>
-                    <a>Ecspèces : Suricate</a>
-                </td>
-                <td className='CardMissionsUsersTdAnimal'>
-                    <a>Animal : Robert</a>
-                </td>
-            </div>
-            <div className='CardMissionsUsersBodyDiv'>
-                <p>
-                    o eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti 
-                    atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, 
-                    similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum 
-                    quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi
-                </p>
-                <button className='CardMissionsUsersButton'>Terminer</button>
-            </div>
-        </div>
+        <div>
+            <ul>
+                {missions.map(mission => <li key={mission.id}> <div className='CardMissionsUsersMainDiv'>
+                <div className='CardMissionsUsersHeadDiv'>
+                    <td className='CardMissionsUsersTdDate'>
+        
+                        <a>Date : {new Date(mission.DateHeureAttribution).toLocaleString()}</a>                    </td>
+                    <td className='CardMissionsUsersTdEnclos'>
+                        <a>Enclos : {mission.idEnclos}</a>
+                    </td>
+                    <td className='CardMissionsUsersTdAnimal'>
+                        {mission.idAnimal ? <a>Animal : {mission.Nom}</a> : <a>Pas d'animal assigné</a>}
+                    </td>
+                </div>
+                <div className='CardMissionsUsersBodyDiv'>
+                    <p>
+                        {mission.Description}
+                    </p>
+                    <button className='CardMissionsUsersButton'>Terminer</button>
+                </div>
+                </div></li>)}
+        </ul>
+    </div>
+        
     );
 
 }
