@@ -14,7 +14,7 @@ function App() {
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/MissionAdmin" element={<MissionAdmin/>}></Route>
         <Route path="/RechercheEncyclopedie" element={<EncyclopedieSearch/>}></Route>
-        <Route path="/FicheEncyclopedie" element={<FicheEspece/>}></Route>
+        <Route path="/FicheEncyclopedie/:idEspece" element={<FicheEspece/>}></Route>
 
       </Routes>
     </BrowserRouter>

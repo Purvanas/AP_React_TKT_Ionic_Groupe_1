@@ -1,12 +1,12 @@
 import EncyclopedieSearch from '../pages/EncyclopedieSearch';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import '../css/style.scss';
 const api = "http://localhost:8080/";
 
-const idEspece = 1;
 const FicheEspece = () => {
-
+    const { idEspece } = useParams();
     const [encyclopedies, setEncyclopedies] = useState([]);
     useEffect(() => {
       try {     

@@ -3,10 +3,12 @@ import axios from 'axios';
 import '../css/style.scss';
 import '../css/EncyclopedieCard.scss';
 import FicheEspece from '../pages/FicheEspece';
+import { useNavigate } from "react-router-dom";
 
 const api = "http://localhost:8080/";
 
 const EncyclopedieCard = () => {
+    const navigate = useNavigate();
     const [encyclopedies, setEncyclopedies] = useState([]);
     const [encyclopediesFilter, setEncyclopediesFilter] = useState([]);
     useEffect(() => {
@@ -22,7 +24,9 @@ const EncyclopedieCard = () => {
       console.error(error);
     }
     }, []);
-
+    const handleCardClick = (id) => {
+      navigate(`/FicheEncyclopedie/${id}`);
+    };
     const handleChange = (event) => {
       event.preventDefault();
       setEncyclopediesFilter(encyclopedies.filter(uneEncyclopedies => uneEncyclopedies.Libelle.toLowerCase().includes(event.target.value)));
@@ -36,7 +40,7 @@ const EncyclopedieCard = () => {
         <div className="cards">
               {encyclopediesFilter.map(encyclopedie => 
                 
-                  <div class="card" onClick={FicheEspece}>
+                  <div class="card" onClick={() => handleCardClick(encyclopedie.id)}>
                     <div class="container">
                         <img src={require(`../Img/${encyclopedie.lienImg}`)} />
                     </div>
