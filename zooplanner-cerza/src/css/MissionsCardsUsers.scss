@@ -1,0 +1,67 @@
+.CardMissionsUsersMainDiv{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    
+    
+}
+
+.CardMissionsUsersHeadDiv {
+    padding: 5px;
+    background-color: #F5A254;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.CardMissionsUsersBodyDiv {
+    margin-top: 0px;
+    padding: 15px;
+    background-color: #F5A254;
+    opacity: 65%;
+}
+
+
+
+    
+.CardMissionsUsersTdDate {
+    grid-area: 1 / 1 / 2 / 2; 
+    
+    text-align: center;
+}
+
+.CardMissionsUsersTdEnclos {
+    grid-area: 1 / 2 / 2 / 3;
+    
+    text-align: center;
+}
+
+
+.CardMissionsUsersTdAnimal {
+    grid-area: 1 / 3 / 2 / 5;
+    
+    text-align: center;
+}
+
+.CardMissionsUsersButton{
+    background-color: white;
+    border: 0px;
+    border-radius: 25px;
+    height: 30px;
+    width: 100px;
+}
+
+.CardMissionsUsersButton:hover{
+    background-color: #32cd32;
+    border: 0px;
+    border-radius: 25px;
+    height: 30px;
+    width: 100px;
+}
+
+ul {
+    list-style-type: none;
+  }
