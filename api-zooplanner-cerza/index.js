@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 8080;
 const config = require('./bdd.js');
 
 app.use(express.json());
+app.use(cors());
 app.use(
     express.urlencoded({
         extended:true,
@@ -32,6 +34,45 @@ app.get("/fonctions", (req, res) => {
         res.json({results});
     })
 });
+
+app.get("/", (req, res) => {
+    res.json({ message: "ok" });
+});
+
+userAuth = (identifiant, mdp) => {
+    return new Promise((resolve, reject) => {
+      config.query(
+        "SELECT id, Nom, Prenom, NumTel, Admin FROM utilisateur WHERE identifiant = '"+identifiant+"' and mdp = '"+mdp+"'",
+        (error, utilisateur) => {
+          if (error) {
+            return reject(error);
+          }
+          //une petite manipulation de donnée pour éviter des soucis de format par la suite.
+          return resolve(utilisateur);
+        }
+      );
+    });
+  };
+  
+   
+  
+  app.post("/auth", (req, res) => {
+    console.log("connection");
+    const data = {
+      identifiant: req.body.Identifiant,
+      mdp: req.body.Password,
+    };
+
+    userAuth(data.identifiant, data.mdp)
+      .then((response) => {
+        res.send(response);
+      })
+
+      .catch((error) => {
+        console.log(error);
+        res.status(500).send("Erreur serveur");
+      });
+  });
 
 
 app.post('/users', (req,res) => {    
