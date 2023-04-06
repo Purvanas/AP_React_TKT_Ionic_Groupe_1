@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
 userAuth = (identifiant, mdp) => {
     return new Promise((resolve, reject) => {
       config.query(
-        "SELECT id, Nom, Prenom, NumTel, Admin FROM utilisateur WHERE identifiant = '"+identifiant+"' and mdp = '"+mdp+"'",
+        "SELECT utilisateur.id, Nom, Prenom, NumTel, idFonction, Admin FROM utilisateur WHERE identifiant = '"+identifiant+"' and mdp = '"+mdp+"'",
         (error, utilisateur) => {
           if (error) {
             return reject(error);

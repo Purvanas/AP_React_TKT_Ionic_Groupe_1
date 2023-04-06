@@ -33,9 +33,8 @@ const FormConnexion = () => {
         else {
             const response = await postAuth();
             if (response.data.length != 0){
-                localStorage.setItem("currentUser",JSON.parse(JSON.stringify(response.data[0])));
-                console.log(localStorage.getItem("currentUser"));
-                console.log(localStorage.getItem("currentUser").Admin);
+                localStorage.setItem("currentUser",JSON.stringify(response.data[0]));
+                let myObject = JSON.parse(localStorage.getItem("currentUser"));
                 navigAcc('/Accueil');
             }
             else{
