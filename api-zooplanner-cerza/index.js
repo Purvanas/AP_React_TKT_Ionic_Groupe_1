@@ -1,11 +1,12 @@
 const express = require("express");
-var cors = require('cors')
+const cors = require("cors");
 const app = express();
 const port = 8080;
 const config = require('./bdd.js');
 
 app.use(cors())
 app.use(express.json());
+app.use(cors());
 app.use(
     express.urlencoded({
         extended:true,
@@ -35,6 +36,9 @@ app.get("/fonctions", (req, res) => {
     })
 });
 
+app.get("/", (req, res) => {
+    res.json({ message: "ok" });
+});
 app.get("/animaux", (req, res) => {
     let sql = "SELECT id, idEnclos, Nom FROM animal";
     config.query(sql,(err, results) =>{
@@ -43,6 +47,42 @@ app.get("/animaux", (req, res) => {
         res.json({results});
     })
 });
+
+userAuth = (identifiant, mdp) => {
+    return new Promise((resolve, reject) => {
+      config.query(
+        "SELECT utilisateur.id, Nom, Prenom, NumTel, idFonction, Admin FROM utilisateur WHERE identifiant = '"+identifiant+"' and mdp = '"+mdp+"'",
+        (error, utilisateur) => {
+          if (error) {
+            return reject(error);
+          }
+          //une petite manipulation de donnée pour éviter des soucis de format par la suite.
+          return resolve(utilisateur);
+        }
+      );
+    });
+  };
+  
+   
+  
+  app.post("/auth", (req, res) => {
+    console.log("connection");
+    const data = {
+      identifiant: req.body.Identifiant,
+      mdp: req.body.Password,
+    };
+
+    userAuth(data.identifiant, data.mdp)
+      .then((response) => {
+        res.send(response);
+      })
+
+      .catch((error) => {
+        console.log(error);
+        res.status(500).send("Erreur serveur");
+      });
+  });
+
 
 app.get("/enclos", (req, res) => {
     let sql = "SELECT id FROM enclos";
