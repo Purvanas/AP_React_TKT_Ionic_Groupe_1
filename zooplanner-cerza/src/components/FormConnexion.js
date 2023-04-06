@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import CryptoJS from 'crypto-js';
 
-import "../css/Register.scss"
-import "../css/style.scss"
 //Faire en sorte que cette page ne soit accéssible que par l'admin
 
 const FormConnexion = () => {
@@ -70,11 +68,11 @@ const FormConnexion = () => {
         return(
             <div id="formAuth">
                 <h1 id='titreForm'>Connexion</h1>
-                <form onSubmit={handleSubmit} id="formAuth">
-                    <div className="formDataRow">
+                <form onSubmit={handleSubmit} id="authForm">
+                    <div className="formDataRow"><label htmlFor="Identifiant">Identifiant :</label>
                     <input className="inputTextForm" type="text" id="Identifiant" name="Identifiant" value={formAuth.Identifiant} onChange={handleChange} required/></div>
 
-                    <div className="formDataRow">
+                    <div className="formDataRow"><label htmlFor="Mot de passe">Mot de passe :</label>
                     <input className="inputTextForm" type="password" id="Password" name="Password" value={formAuth.Password} onChange={handleChange} required/></div>
 
                     <button id="sumbitBtn">Connexion</button>
