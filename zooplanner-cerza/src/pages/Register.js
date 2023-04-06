@@ -10,6 +10,7 @@ const Register = () => {
    
     const salt = "hxjafvjwxcvjkwxhkcjvh";
     const api = "http://localhost:8080/";
+    const re = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/);
 
     const [formData, setFormData] = useState({
         Nom: '',
@@ -19,6 +20,8 @@ const Register = () => {
         Password:''
     });
     const [checked, setChecked] = React.useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [optionsList, setOptionsList] = useState([]);
     
 
     const handleCheck = () => {
@@ -35,7 +38,9 @@ const Register = () => {
         event.preventDefault();
         const password = document.getElementById("Password")
         const passwordCheck = document.getElementById("PasswordCheck")
-        if(password.value === passwordCheck.value){
+        if(selectedOption === null){alert("Vous devez selectionner une fonction")}
+        else if(!password.value.match(re)){alert("Le mot de passe doit faire 12 caractère des long, doit contenir des majuscules, des minuscules et des caractères spéciaux")}
+        else if(password.value === passwordCheck.value){
             await postUser()
         } else{
             alert("Les mots de passe doivent être identiques")
@@ -49,8 +54,7 @@ const Register = () => {
         return hash.toString(CryptoJS.enc.Hex);
 }
 
-const [selectedOption, setSelectedOption] = useState(null);
-const [optionsList, setOptionsList] = useState([]);
+
 
 const getFonction = async () => {
   try {
@@ -91,7 +95,8 @@ const getFonction = async () => {
             Password:''
         })
         document.getElementById('PasswordCheck').value=""
-        setOptionsList([])
+        document.getElementById('Fonction').selectedIndex = 0
+        setSelectedOption(null)
       };
 
 
@@ -116,7 +121,7 @@ const getFonction = async () => {
                     <div className="formDataRow"><label htmlFor="Fonction">Fonction :</label>
                     
                     <select className="inputComboBoxForm" type="select" id="Fonction" name="Fonction" value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-                        <option value="">Sélectionner une option</option>
+                        <option value="">Sélectionner une fonction</option>
                         {optionsList.map((option) => (
                             <option key={option.value} value={option.value}>
                             {option.label}
