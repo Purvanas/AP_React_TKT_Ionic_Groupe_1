@@ -94,6 +94,15 @@ app.get("/enclos", (req, res) => {
     })
 });
 
+app.get("/alertes", (req, res) => {
+    let sql= "SELECT id, Description, Niveau, DateHeure, idUtilisateur FROM alerte";
+    config.query(sql,(err, results) =>{
+        if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
+
 app.get("/admin/missions", (req, res) => {let sql = "SELECT mission.id, mission.idEnclos, mission.idAnimal, animal.Nom as nomAnimal, idUtilisateur, utilisateur.Nom as nomUser, utilisateur.Prenom as prenomUser, Description, DateHeureValidation, DateHeureAttribution FROM mission left join animal on animal.id = idAnimal inner join utilisateur on idUtilisateur = utilisateur.id";
     config.query(sql,(err, results) =>{
         if(err) throw err
@@ -101,6 +110,7 @@ app.get("/admin/missions", (req, res) => {let sql = "SELECT mission.id, mission.
         res.json({results});
     })
 });
+
 
 //REOUTES POST ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
 

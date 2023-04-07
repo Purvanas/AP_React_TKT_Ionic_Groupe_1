@@ -99,7 +99,6 @@ const getFonction = async () => {
         setSelectedOption(null)
       };
 
-
     useEffect(() => {
         getFonction();
     }, []);

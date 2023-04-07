@@ -174,9 +174,10 @@ const MissionAdmin = () => {
     return (
         <div>
           <h1>Liste des missions</h1>
+          <div id="btnSwitchMissions">
           <button onClick={switchMission} id="btnMissionWidget" className='btnMissionWidget'>
             {showValidatedMissions ?  "Voir missions validées" : "Voir missions en attente" }
-          </button>
+          </button></div>
           {mission()}
         </div>
     );
