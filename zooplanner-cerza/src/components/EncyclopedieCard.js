@@ -35,7 +35,7 @@ const EncyclopedieCard = () => {
     return (
       <div>
         <div className="searchDiv">
-            <input type={Text} onChange={handleChange}></input>
+            <input type={Text} onChange={handleChange} placeholder="Recherche..."></input>
         </div>
         <div className="cards">
               {encyclopediesFilter.map(encyclopedie => 

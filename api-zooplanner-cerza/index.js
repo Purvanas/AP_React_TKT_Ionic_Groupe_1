@@ -69,7 +69,7 @@ app.get("/admin/missions", (req, res) => {let sql = "SELECT mission.id, mission.
 
 app.get("/EncyclopedieFiche/:idEspece", (req, res) => {
     const idEspece = req.params.idEspece;
-    let sql = "SELECT DISTINCT espece.id, espece.Libelle as Libelle, espece.tailleMin, espece.tailleMax, espece.dureeGestationJours, espece.duréeVie, espece.Description, idEnclos, regime.Libelle as Regime FROM `espece` INNER join animal on espece.id = idEspece INNER JOIN regime on idRegime = regime.id WHERE espece.id ="+ idEspece +";";
+    let sql = "SELECT DISTINCT espece.id, espece.Libelle as Libelle, espece.tailleMin, espece.tailleMax, espece.dureeGestationJours, espece.duréeVie, espece.Description, espece.lienImg, idEnclos, regime.Libelle as Regime FROM `espece` INNER join animal on espece.id = idEspece INNER JOIN regime on idRegime = regime.id WHERE espece.id ="+ idEspece +";";
     config.query(sql, [idEspece],(err, results) =>{
         if(err) throw err
         console.log(results);
