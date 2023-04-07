@@ -47,12 +47,12 @@ app.get("/animaux", (req, res) => {
         res.json({results});
     })
 });
-/*
+
 
 userAuth = (identifiant, mdp) => {
     return new Promise((resolve, reject) => {
       config.query(
-        "SELECT utilisateur.id, Nom, Prenom, NumTel, idFonction, Admin FROM utilisateur WHERE identifiant = '"+identifiant+"' and mdp = '"+mdp+"'",
+        "SELECT id, Nom, Prenom, NumTel, idFonction, Admin FROM utilisateur WHERE identifiant = '"+identifiant+"' and mdp = '"+mdp+"'",
         (error, utilisateur) => {
           if (error) {
             return reject(error);
@@ -105,7 +105,7 @@ app.get("/admin/missions", (req, res) => {let sql = "SELECT mission.id, mission.
 //REOUTES POST ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
 
 
-*/
+
 
 app.get("/EncyclopedieFiche/:idEspece", (req, res) => {
     const idEspece = req.params.idEspece;

@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 const api = "http://localhost:8080/";
-const idUtilisateur = 5;
+let myObject = JSON.parse(localStorage.getItem("currentUser"));
 const MissionsCardsUsers = () => {
     const [missions, setMissions] = useState([]);
+    console.log(myObject.id);
 
     useEffect(() => {
       try {     
       const fetchData = async () => {
-        const response = await axios.get(api +`UsersMissions?idUtilisateur=${idUtilisateur}`);
+        const response = await axios.get(api +`UsersMissions?idUtilisateur=${myObject.id}`);
         setMissions(response.data.results);
         console.log(response.data.results);
       };
@@ -22,6 +23,7 @@ const MissionsCardsUsers = () => {
    
     return (
         <div>
+
             <ul>
                 {missions.map(mission => <li key={mission.id}> <div className='CardMissionsUsersMainDiv'>
                 <div className='CardMissionsUsersHeadDiv'>
