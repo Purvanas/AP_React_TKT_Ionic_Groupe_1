@@ -10,9 +10,6 @@ import axios from 'axios';
 const EncyclopedieSearch = () => {
 
 
-
-
-
     return (
         <div>
             
