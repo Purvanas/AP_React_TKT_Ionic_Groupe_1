@@ -1,0 +1,80 @@
+#registerForm{
+    align-items: center;
+    justify-content: center;
+    border: thin solid #FE9C3F;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+#formRegister{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+
+#sumbitBtn{
+    border: #FE9C3F solid thin;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto
+    
+}
+
+#sumbitBtn:hover{
+    background-color: #FE9C3F ;
+}
+
+#sumbitBtn:active{
+    background-color: #ff8819 ;
+}
+
+.formDataRow{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 580px;
+}
+
+.inputTextForm{
+    height: 22px;
+    justify-content: end;
+    align-items: center;
+    border: solid rgb(235, 235, 235) thin;
+    background-color: rgb(228, 228, 228);
+}
+
+.inputTextForm:hover{
+    border: solid #FE9C3F thin;
+}
+
+.inputTextForm:active{
+    border: solid white thin;
+}
+
+
+.inputComboBoxForm{
+    height: 22px;
+    justify-content: end;
+    align-items: center;
+    border: solid rgb(235, 235, 235) thin;
+    background-color: rgb(228, 228, 228);
+}
+.inputComboBoxForm:hover{
+    border: solid #FE9C3F thin;
+}
+
+
+label{
+    text-align: right;
+    padding-right: 10px;
+}
