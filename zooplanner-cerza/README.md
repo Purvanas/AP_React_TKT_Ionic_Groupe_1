@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# AP_React_TKT_Ionic ZooPlanner
+Ce projet est un AP réalisé dans le cadre de notre formation de 2ème année au BTS SIO de Satin Adjutor à Vernon. Il consistait à apréhender 2 nouveaux outils: Github et GitKraken, ainsi que le framework React.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ce ReadMe vous détaillera tout le nécessaire afin que le projet puisse fonctionner sur votre machine dans le cas où vous le téléchargeriez.
 
-## Available Scripts
+## Prérequis
+Ce projet fut réalisé en local à travers le framework React il vous faudra donc installer nodeJs. Il faudra également un SGBD utilisable en local comme WampServer ou MySQLServer.
 
-In the project directory, you can run:
+- [nodeJs](https://nodejs.org/en)
+- [WampServer](https://www.wampserver.com)  
+- MySQLServer / etc.
 
-### `npm start`
+## Installation des dépendences
+Ouvrez le dossier et exécuter la commande ```npm i``` dans le dossier api-zooplnner-cerza et dans le dossier eooplanner-creza.
+Puis effctuez les commandes npm start dans ces même dossiers
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Si vous souhaitez modifier le projet dans sa structure de façon plus poussée que ce qu'il n'a été fait, vous pouvez bien évidemment ajouter d'autres outils comme vous le souhaitez.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Pour le reste, il vous suffit de cloner le repository du projet sur votre machine, pensez bien à prendre tous les éléments de ce Github.
 
-### `npm test`
+## Mise en place de la base de donnée
+Pour garantir le bon fonctionement du projet, il est nécessaire de correctement installer la base de donnée.
+Sur le SGBD choisi, il suffit d'utiliser les scripts de constrution de bdd et d'insertion de jeux de test:
+```
+- bdd-zooplanner-structure.sql
+- bdd-zooplanner-données.sql
+```
+pour que la structure de la base de donnée soit automatiquement completée.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Fonctionalités
+L'application web est pour l'instant simpliste mais voici ces fonctionnalités:
+- Différentes pages pour consulter des informations extraites de la base de données liées
+- La possibilité de se connecter et de créer un utilisateur
+- La différenciation entre utilisateur lambda et administrateur
+- La possibilité de consulter l'enclopedie des annimaux
+- La possibilité pour un administrateur de supprimer/modifier/ajouter des alertes, ainsi que d'ajouter des mission attribués à un utilisateur
+- La crétion d'alerte par les utilisateurs
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Participants
+Ce projet fut réalisé par:
+- Mirocha Arnaud
+- Guillot Gaspard
+- Jardin Clément
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Si la moindre question ou proposition d'évolution du projet vous vient, vous pouvez me contacter à ces adresses:
+- Sur github
+- Par mail : arnaudmirocha@gmail.com
+- Par discord : Purvanas#5674
