@@ -20,8 +20,8 @@
 }
 
 .yellow{
-    background-color: rgb(203, 208, 56);
-    border: solid rgb(203, 208, 56);
+    background-color: rgb(236, 223, 39);
+    border: solid rgb(236, 223, 39);
 }
 
 .orange{
@@ -49,4 +49,54 @@
 
 .widgetAlertesBody{
     margin: 5px;
+}
+
+.btnAlerte{
+    border: #FE9C3F solid thin;
+    border-radius: 5px;
+    height: 25px;
+}
+
+.btnAlerte:hover{
+    background-color: #FE9C3F ;
+}
+
+.btnAlerte:active{
+    background-color: #ff8819 ;
+}
+
+.alerteBtn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+#btnAddAlerte{
+    margin-left: 100px;
+    border-radius: 10px;
+    height: 35px;
+    background-color: rgb(82, 219, 82);
+}
+
+
+#btnAddAlerte:hover{
+    background-color: rgb(65, 173, 65);
+}
+
+#btnAddAlerte:active{
+    background-color: rgb(51, 134, 51);
 }

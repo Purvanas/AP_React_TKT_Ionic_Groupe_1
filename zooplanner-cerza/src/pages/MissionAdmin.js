@@ -6,6 +6,7 @@ import "../css/MissionCardAdmin.scss"
 
 const MissionAdmin = () => {
     const api = "http://localhost:8080/";
+    document.title = "ZooPlanner Missions";
 
     const [missionList, setMissionList] = useState([]);
     const [displayMissionList, setDisplayMissionList] = useState([]);

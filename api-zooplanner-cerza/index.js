@@ -116,9 +116,51 @@ app.post('/missions', (req,res) => {
     })
 })
 
+app.post('/alertes', (req,res) => {    
+    console.log("Body : ",req.body)
+    const data = {
+        Description : req.body.Description,
+        Niveau : req.body.Niveau,
+        DateHeure: req.body.DateHeure,
+        idUtilisateur: req.body.idUtilisateur
+    }
+    let sql = "INSERT INTO `alerte` (`Description`, `Niveau`, `DateHeure`, `idUtilisateur`) VALUES (?,?,?,?); ";
+    config.query(sql, Object.values(data), (err) =>{
+        if(err){
+            console.log(data);
+            res.json({message : "fail", Error : err});
+        }else{
+            res.json({message : "nice", Data : data});
+        }
+    })
+})
 
-app.delete("/del/jeux/:id", (req, res) => {
-    let sql = `DELETE FROM jeux where id = ${req.params.id}`;
+
+/////// ROUTES PUT ET PACTH //////////////////////////////
+app.put('/alertes/:id', (req,res) => {    
+    console.log("Body : ",req.body)
+    const data = {
+        Description : req.body.Description,
+        Niveau : req.body.Niveau,
+        DateHeure: req.body.DateHeure,
+        idUtilisateur: req.body.idUtilisateur
+    }
+    let sql = "UPDATE `alerte` SET `Description` = ?, `Niveau` = ?, `DateHeure` = ?, `idUtilisateur` = ? WHERE `idAlerte` = ?;";
+    config.query(sql, [...Object.values(data), req.params.id], (err) =>{
+        if(err){
+            console.log(data);
+            res.json({message : "fail", Error : err});
+        }else{
+            res.json({message : "nice", Data : data});
+        }
+    })
+})
+
+
+//// ROUTES DELETE ////////////////////////////
+
+app.delete("/alertes/:id", (req, res) => {
+    let sql = `DELETE FROM alerte where id = ${req.params.id}`;
     config.query(sql,(err, results) =>{
         if(err){
             res.json({message : "fail", Error : err.code});
