@@ -28,6 +28,7 @@ Sur le SGBD choisi, il suffit d'utiliser les scripts de constrution de bdd et d'
 pour que la structure de la base de donnée soit automatiquement completée.
 
 ## Fonctionalités
+Certaines fonctionnalaitées ne sont pas encore terminées mais voici la liste des fonctionnalités à venir => 
 L'application web est pour l'instant simpliste mais voici ces fonctionnalités:
 - Différentes pages pour consulter des informations extraites de la base de données liées
 - La possibilité de se connecter et de créer un utilisateur
