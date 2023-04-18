@@ -11,6 +11,7 @@ const Register = () => {
     const salt = "hxjafvjwxcvjkwxhkcjvh";
     const api = "http://localhost:8080/";
     const re = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/);
+    document.title = "ZooPlanner Création de compte";
 
     const [formData, setFormData] = useState({
         Nom: '',
@@ -98,7 +99,6 @@ const getFonction = async () => {
         document.getElementById('Fonction').selectedIndex = 0
         setSelectedOption(null)
       };
-
 
     useEffect(() => {
         getFonction();

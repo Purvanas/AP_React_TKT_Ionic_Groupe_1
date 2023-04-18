@@ -6,6 +6,7 @@ import "../css/MissionCardAdmin.scss"
 
 const MissionAdmin = () => {
     const api = "http://localhost:8080/";
+    document.title = "ZooPlanner Missions";
 
     const [missionList, setMissionList] = useState([]);
     const [displayMissionList, setDisplayMissionList] = useState([]);
@@ -174,9 +175,10 @@ const MissionAdmin = () => {
     return (
         <div>
           <h1>Liste des missions</h1>
+          <div id="btnSwitchMissions">
           <button onClick={switchMission} id="btnMissionWidget" className='btnMissionWidget'>
             {showValidatedMissions ?  "Voir missions validées" : "Voir missions en attente" }
-          </button>
+          </button></div>
           {mission()}
         </div>
     );
