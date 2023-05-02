@@ -1,5 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import AlertCard from '../components/AlertCard';
 import Modal from '../components/Modal';
 
@@ -7,6 +9,10 @@ import '../css/MissionCardAdmin.scss'
 import '../css/AlertCard.scss'
 
 const AlerteAdmin = () => {
+
+  const myObject = JSON.parse(localStorage.getItem("currentUser"));
+  const navigAcc = useNavigate();
+
     const api = "http://localhost:8080/";
     document.title = "ZooPlanner Alertes";
 
@@ -19,22 +25,27 @@ const AlerteAdmin = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-
-
+    const verifAdmin = () => {
+      if(myObject.Admin === 1){
+        getAlertes();
+        getdata();
+      }
+      else{
+        navigAcc('/Accueil');
+      }
+    }
 
     const getAlertes = async () => {
       const alert = await axios.get(api + "alertes");
       setAlerteList(alert.data.results.sort((a, b) => b.Niveau - a.Niveau));
       console.log("plop")
     }
-    
 
     const getdata = async () =>{
       const utilisateurs = await axios.get(api+"users")
       setUsersList(utilisateurs.data.results)
       console.log(usersList)
     }
-    
 
     const alertes = () => {
         return (
@@ -117,11 +128,12 @@ const AlerteAdmin = () => {
 
     
     useEffect(() => {
-        getAlertes();
-        getdata();
+        verifAdmin();
     }, []);
 
     return (
+      <div>
+        <Header/>
         <div id="backGround">
             <h1><b>ALERTES !!!!!!!!!!</b></h1>
             <div>
@@ -132,6 +144,8 @@ const AlerteAdmin = () => {
            </div>            
             {alertes()}
         </div>
+      </div>
+        
     );
 };
 

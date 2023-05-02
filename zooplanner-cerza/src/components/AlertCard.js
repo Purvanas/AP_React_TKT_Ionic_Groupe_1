@@ -4,6 +4,9 @@ import '../css/AlertCard.scss'
 import Modal from '../components/Modal';
 
 const AlertCard = (props) => {
+
+  const myObject = JSON.parse(localStorage.getItem("currentUser"));
+
     const api = "http://localhost:8080/";
     const alertes = props.alertes
     const users = props.users
@@ -104,7 +107,22 @@ const AlertCard = (props) => {
           <button type="submit" id="btnMissionWidget">Valider</button>
         </form>
       );  
-      
+
+      const verifAdmin = () => {
+        if(myObject.Admin === 1){
+          return (<div className='alerteBtn'>
+          {showModal && (
+              <Modal content={form} onClose={handleCloseModal}/>
+            )}
+          <button onClick={handleOpenModal} className='btnAlerte'>Modifier</button>
+            {showModal && (
+              <Modal content={form} onClose={handleCloseModal}/>
+            )}
+
+          <button className='btnAlerte' onClick={deleteAlerte}>Supprimer</button>
+          </div>);
+        }
+      }
 
     return (
         <div key={alertes.id} className={`widgetAlertes ${couleurAlerte[alertes.Niveau]}`}>
@@ -114,15 +132,7 @@ const AlertCard = (props) => {
             </div>
             <div className='widgetAlertesBody'>{alertes.Description}</div>
             <div className='widgetAlertesBody'><b>Émise à {heure}</b></div>
-            <div className='alerteBtn'>
-
-            <button onClick={handleOpenModal} className='btnAlerte'>Modifier</button>
-              {showModal && (
-                <Modal content={form} onClose={handleCloseModal}/>
-              )}
-
-            <button className='btnAlerte' onClick={deleteAlerte}>Supprimer</button>
-            </div>
+            {verifAdmin()}
         </div>
     );
 };

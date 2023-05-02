@@ -33,6 +33,7 @@ const FormConnexion = () => {
             if (response.data.length != 0){
                 localStorage.setItem("currentUser",JSON.stringify(response.data[0]));
                 let myObject = JSON.parse(localStorage.getItem("currentUser"));
+                console.log(myObject);
                 navigAcc('/Accueil');
             }
             else{
