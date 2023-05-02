@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/Header';
 
 
 //const res = await axios.get(`requete d'api`); /////FONCTION AXIOS.GET/////
@@ -23,7 +24,8 @@ import React from 'react';
 const Accueil = () => {
     return (
         <div>
-            <h1>Accueil</h1>
+          <Header/>
+          <h1>Accueil</h1>
         </div>
     );
 };

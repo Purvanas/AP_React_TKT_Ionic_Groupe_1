@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import axios from "axios";
 import CryptoJS from 'crypto-js';
+import Header from '../components/Header';
 
 import "../css/Register.scss"
 import "../css/style.scss"
@@ -151,6 +152,7 @@ const getFonction = async () => {
     
     return (
         <div>
+            <Header/>
             {FormRegister()}
         </div>
     );
