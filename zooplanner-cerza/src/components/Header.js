@@ -1,11 +1,19 @@
 import React, { useState, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/bootstrap.min.css';
+import '../css/Header.scss';
 import LogoCerza from '../Img/logoCerza.svg';
 import LogoAlerte from '../Img/alertLogo.svg';
+import LogOut from '../Img/logoLogout.svg';
 
 const Header = () => {
     const nav = useNavigate();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        localStorage.clear();
+        nav('/');
+    }
     
     return (
         <div>
@@ -40,8 +48,8 @@ const Header = () => {
                         </div>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                    
+                    <form class="d-flex" onSubmit={handleSubmit} id="logout">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><img id='logOutBtn' src={LogOut} alt="logoLogout.svg"/></button>
                     </form>
                     </div>
                 </div>
