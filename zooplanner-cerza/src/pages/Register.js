@@ -1,6 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import axios from "axios";
 import CryptoJS from 'crypto-js';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 
 import "../css/Register.scss"
@@ -8,6 +9,9 @@ import "../css/style.scss"
 //Faire en sorte que cette page ne soit accéssible que par l'admin
 
 const Register = () => {
+
+    const myObject = JSON.parse(localStorage.getItem("currentUser"));
+    const navigAcc = useNavigate();
    
     const salt = "hxjafvjwxcvjkwxhkcjvh";
     const api = "http://localhost:8080/";
@@ -25,6 +29,14 @@ const Register = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [optionsList, setOptionsList] = useState([]);
     
+    const verifAdmin = () => {
+        if(myObject.Admin === 1){
+            getFonction();
+        }
+        else{
+          navigAcc('/Accueil');
+        }
+      }
 
     const handleCheck = () => {
         setChecked(!checked);
@@ -102,7 +114,7 @@ const getFonction = async () => {
       };
 
     useEffect(() => {
-        getFonction();
+        verifAdmin();
     }, []);
 
     const FormRegister = () =>{ //

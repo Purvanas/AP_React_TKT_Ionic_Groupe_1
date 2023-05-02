@@ -1,10 +1,16 @@
 import React, { useState, useEffect  } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 import MissionCardAdmin from '../components/MissionCardAdmin';
 
 import "../css/MissionCardAdmin.scss"
 
 const MissionAdmin = () => {
+
+    const myObject = JSON.parse(localStorage.getItem("currentUser"));
+    const navigAcc = useNavigate();
+
     const api = "http://localhost:8080/";
     document.title = "ZooPlanner Missions";
 
@@ -22,7 +28,15 @@ const MissionAdmin = () => {
 
     const [showValidatedMissions, setShowValidatedMissions] = useState(false);
 
-
+    const verifAdmin = () => {
+        if(myObject.Admin === 1){
+          getMissions();
+          getData();
+        }
+        else{
+          navigAcc('/Accueil');
+        }
+      }
 
     const switchMission = () => {
         const filteredMissions = missionList.filter((mission) => {
@@ -168,12 +182,12 @@ const MissionAdmin = () => {
     };
 
     useEffect(() => {
-        getMissions();
-        getData();
+        verifAdmin();
     }, []);
 
     return (
         <div>
+            <Header/>
           <h1>Liste des missions</h1>
           <div id="btnSwitchMissions">
           <button onClick={switchMission} id="btnMissionWidget" className='btnMissionWidget'>
