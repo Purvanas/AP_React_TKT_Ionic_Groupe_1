@@ -7,6 +7,7 @@ import Modal from '../components/Modal';
 
 import '../css/MissionCardAdmin.scss'
 import '../css/AlertCard.scss'
+import FormAlert from '../components/FormAlert';
 
 const AlerteAdmin = () => {
 
@@ -84,7 +85,7 @@ const AlerteAdmin = () => {
       document.getElementById("backGround").className = ""
     };
   
-    const form = (
+    /*const form = (
       <form onSubmit={handleSubmit}>
         <h1 style={{textAlign: 'center'}}>Ajouter une alerte</h1>
           <div id="formAddAlert">
@@ -124,7 +125,7 @@ const AlerteAdmin = () => {
         <br />
         <button type="submit" id="btnMissionWidget">Valider</button>
       </form>
-    );
+    );*/
 
     
     useEffect(() => {
@@ -139,7 +140,7 @@ const AlerteAdmin = () => {
             <div>
               <button onClick={handleOpenModal} id='btnAddAlerte'>Ajouter une alerte</button>
               {showModal && (
-                <Modal content={form} onClose={handleCloseModal}/>
+                <Modal content={<FormAlert handleSubmit={handleSubmit} usersList={usersList} selectedLevel={selectedLevel} setSelectedLevel={setSelectedLevel} selectedUser={selectedUser} setSelectedUser={selectedUser} />} onClose={handleCloseModal}/>
               )}
            </div>            
             {alertes()}
