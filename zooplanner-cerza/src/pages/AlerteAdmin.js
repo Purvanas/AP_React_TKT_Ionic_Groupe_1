@@ -133,8 +133,8 @@ const AlerteAdmin = () => {
 
     return (
       <div>
-        <Header/>
         <div id="backGround">
+            <Header/>
             <h1><b>ALERTES !!!!!!!!!!</b></h1>
             <div>
               <button onClick={handleOpenModal} id='btnAddAlerte'>Ajouter une alerte</button>

@@ -1,24 +1,24 @@
 .TableauMissions{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(660px, 1fr));
-    row-gap: 50px;
-    margin-top: 15px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 200px;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(660px, 1fr)) !important;
+    row-gap: 50px !important;
+    margin-top: 15px !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    margin-bottom: 200px !important;
 }
 
 .widgetMission{
-    display: grid;
-    background-color: #fe9b3f95;
-    border: thin solid #34231B;
-    width: 650px;
+    display: grid !important;
+    background-color: #fe9b3f95 !important;
+    border: thin solid #34231B !important;
+    width: 650px !important;
 }
 
 .headerWidgetMission{
-    background-color: #ff8819;
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr;
+    background-color: #ff8819 !important;
+    display: grid !important;
+    grid-template-columns: 3fr 1fr 1fr !important;
 }
 
 .btnMissionWidget{
@@ -26,63 +26,63 @@
 }
 
 .inputComboBoxForm2{
-    width: 250px;
-    display: flex;
-    align-items: center; /* alignement vertical */
+    width: 250px !important;
+    display: flex !important;
+    align-items: center !important; /* alignement vertical */
 }
 
 #btnSwitchMissions{
-    margin-left: 80px;
-    margin-top: 100px;
+    margin-left: 80px !important;
+    margin-top: 100px !important;
 }
 
 #headerWidgetMissionText{
-    margin-left: 10px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-left: 10px !important;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
 }
 
 #bodyWidgetMissionText{
-    margin: 15px;
-    height: 100px;
+    margin: 15px !important;
+    height: 100px !important;
 }
 
 #WidgetMissionEtat{
-    text-align: end;
-    padding: 5px;
-    width: 95%;
+    text-align: end !important;
+    padding: 5px !important;
+    width: 95% !important;
 }
 
 #boutonWidget{
-    display: grid;
-    grid-template-columns: 1fr 1fr 6fr;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 6fr !important;
 }
 
 #btnMissionWidget{
-    border: #FE9C3F solid thin;
-    border-radius: 5px;
-    width: 110px;
-    height: 30px;
-    margin: 10px;
+    border: #FE9C3F solid thin !important;
+    border-radius: 5px !important;
+    width: 110px !important;
+    height: 30px !important;
+    margin: 10px !important;
 }
 
 #btnMissionWidget:hover{
-    background-color: #FE9C3F ;
+    background-color: #FE9C3F  !important;
 }
 
 #btnMissionWidget:active{
-    background-color: #ff8819 ;
+    background-color: #ff8819  !important;
 }
 
 #textareaMission{
-    width: 610px;
-    height: 105px;
-    border: thin solid #34231B;
-    background-color: #ffffff5c;
+    width: 610px !important;
+    height: 105px !important;
+    border: thin solid #34231B !important;
+    background-color: #ffffff5c !important;
 }
 
 #formAddAlert{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    align-items: center; /* alignement vertical */
+    display: grid !important;
+    grid-template-columns: 1fr 3fr !important;
+    align-items: center !important; /* alignement vertical */
 }

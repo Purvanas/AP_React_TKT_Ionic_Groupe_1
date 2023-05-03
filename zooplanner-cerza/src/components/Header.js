@@ -49,28 +49,28 @@ const Header = () => {
     const verifAdmin = () => {
         if(myObject.Admin === 1){
           return (
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                <a class="nav-link" href='http://localhost:3000/rechercheEncyclopedie'>Encyclopédie</a>
+            <ul className="navbar-nav me-auto">
+                <li className="nav-item">
+                <a className="nav-link" href='http://localhost:3000/rechercheEncyclopedie'>Encyclopédie</a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href='http://localhost:3000/etatAnimaux'>État des animaux</a>
+                <li className="nav-item">
+                <a className="nav-link" href='http://localhost:3000/etatAnimaux'>État des animaux</a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href='http://localhost:3000/register'>Nouveau compte</a>
+                <li className="nav-item">
+                <a className="nav-link" href='http://localhost:3000/register'>Nouveau compte</a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href='http://localhost:3000/MissionAdmin'>Nouvelle mission</a>
+                <li className="nav-item">
+                <a className="nav-link" href='http://localhost:3000/MissionAdmin'>Nouvelle mission</a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href='http://localhost:3000/AlertesAdmin'>Administration Alertes</a>
+                <li className="nav-item">
+                <a className="nav-link" href='http://localhost:3000/AlertesAdmin'>Administration Alertes</a>
                 </li>
                 
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src={LogoAlerte} alt="alertLogo.svg"/></a>
-                <div class="dropdown-menu">
+                <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src={LogoAlerte} alt="alertLogo.svg"/></a>
+                <div className="dropdown-menu">
                     {alerteList.map((alerte) => (
-                        <a class="dropdown-item">
+                        <a className="dropdown-item">
                         <AlertCard alertes={alerte} users={usersList} alerteList={alerteList} setAlerteList={setAlerteList} getAlertes={getAlertes}/>
                         </a>
                     ))}
@@ -81,18 +81,18 @@ const Header = () => {
         }
         else{
             return(
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                    <a class="nav-link" href='http://localhost:3000/rechercheEncyclopedie'>Encyclopédie</a>
+                <ul className="navbar-nav me-auto">
+                    <li className="nav-item">
+                    <a className="nav-link" href='http://localhost:3000/rechercheEncyclopedie'>Encyclopédie</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href='http://localhost:3000/etatAnimaux'>État des animaux</a>
+                    <li className="nav-item">
+                    <a className="nav-link" href='http://localhost:3000/etatAnimaux'>État des animaux</a>
                     </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src={LogoAlerte} alt="alertLogo.svg"/></a>
-                    <div class="dropdown-menu">
+                    <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src={LogoAlerte} alt="alertLogo.svg"/></a>
+                    <div className="dropdown-menu">
                         {alerteList.map((alerte) => (
-                            <a class="dropdown-item">
+                            <a className="dropdown-item">
                             <AlertCard alertes={alerte} users={usersList} alerteList={alerteList} setAlerteList={setAlerteList} getAlertes={getAlertes}/>
                             </a>
                         ))}
@@ -105,16 +105,16 @@ const Header = () => {
 
     return (
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="http://localhost:3000/Accueil"><img src={LogoCerza} alt="logoCerza.svg"/></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="http://localhost:3000/Accueil"><img src={LogoCerza} alt="logoCerza.svg"/></a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarColor03">
+                    <div className="collapse navbar-collapse" id="navbarColor03">
                     {verifAdmin()}
-                    <form class="d-flex" onSubmit={handleSubmit} id="logout">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><img id='logOutBtn' src={LogOut} alt="logoLogout.svg"/></button>
+                    <form className="d-flex" onSubmit={handleSubmit} id="logout">
+                        <button className="btn btn-secondary my-2 my-sm-0" type="submit"><img id='logOutBtn' src={LogOut} alt="logoLogout.svg"/></button>
                     </form>
                     </div>
                 </div>

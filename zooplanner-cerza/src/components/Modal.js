@@ -17,7 +17,7 @@ const Modal = (props) => {
       };
         
   return (
-    <div className="modal" style={modalStyle}>
+    <div className="modal1" style={modalStyle}>
         <button onClick={props.onClose} style={{float: 'right'}}>Fermer</button>
       <div className="modal-content">
         {props.content}

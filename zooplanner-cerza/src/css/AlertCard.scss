@@ -1,103 +1,103 @@
 .TableauAlertes{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    row-gap: 50px;
-    margin-top: 15px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 200px;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    row-gap: 50px !important;
+    margin-top: 15px !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    margin-bottom: 200px !important;
 }
 
 .pastille{
-    height: 25px;
-    width: 25px;
-    border-radius: 25px;
+    height: 25px !important;
+    width: 25px !important;
+    border-radius: 25px !important;
 }
 
 .green{
-    background-color: rgb(8, 144, 8);
-    border: solid rgb(8, 144, 8) ;
+    background-color: rgb(8, 144, 8) !important;
+    border: solid rgb(8, 144, 8)  !important;
 }
 
 .yellow{
-    background-color: rgb(236, 223, 39);
-    border: solid rgb(236, 223, 39);
+    background-color: rgb(236, 223, 39) !important;
+    border: solid rgb(236, 223, 39) !important;
 }
 
 .orange{
-    background-color: rgb(234, 150, 47);
-    border: solid rgb(234, 150, 47);
+    background-color: rgb(234, 150, 47) !important;
+    border: solid rgb(234, 150, 47) !important;
 }
 
 .red{
-    background-color: rgb(217, 38, 38);
-    border: solid rgb(217, 38, 38);
+    background-color: rgb(217, 38, 38) !important;
+    border: solid rgb(217, 38, 38) !important;
 }
 
 .widgetAlertes{
     height: 175px !important;
     width: 300px !important;
     border-radius: 10px !important;
-    background-color: rgba(255, 196, 88, 0.373);
-    white-space: initial;
+    background-color: rgba(255, 196, 88, 0.373) !important;
+    white-space: initial !important;
 }
 
 .widgetAlertesHeader{
-    margin: 5px;
-    display: grid;
-    grid-template-columns: 5fr 1fr;
+    margin: 5px !important;
+    display: grid !important;
+    grid-template-columns: 5fr 1fr !important;
 }
 
 .widgetAlertesBody{
-    margin: 5px;
+    margin: 5px !important;
 }
 
 .btnAlerte{
-    border: #FE9C3F solid thin;
-    border-radius: 5px;
-    height: 25px;
+    border: #FE9C3F solid thin !important;
+    border-radius: 5px !important;
+    height: 25px !important;
 }
 
 .btnAlerte:hover{
-    background-color: #FE9C3F ;
+    background-color: #FE9C3F  !important;
 }
 
 .btnAlerte:active{
-    background-color: #ff8819 ;
+    background-color: #ff8819  !important;
 }
 
 .alerteBtn{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 10px;
-    margin-top: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    column-gap: 10px !important;
+    margin-top: 20px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
 }
 
 .modal-overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9998;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 9998 !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(5px) !important;
 }
 
 #btnAddAlerte{
-    margin-left: 100px;
-    border-radius: 10px;
-    height: 35px;
-    background-color: rgb(82, 219, 82);
+    margin-left: 100px !important;
+    border-radius: 10px !important;
+    height: 35px !important;
+    background-color: rgb(82, 219, 82) !important;
 }
 
 
 #btnAddAlerte:hover{
-    background-color: rgb(65, 173, 65);
+    background-color: rgb(65, 173, 65) !important;
 }
 
 #btnAddAlerte:active{
-    background-color: rgb(51, 134, 51);
+    background-color: rgb(51, 134, 51) !important;
 }
