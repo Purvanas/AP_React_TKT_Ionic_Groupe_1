@@ -1,8 +1,10 @@
 import React, { useState, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import Modal from '../components/Modal';
 
 import AlertCard from '../components/AlertCard';
+import FormAlert from './FormAlert';
 
 import '../css/bootstrap.min.css';
 import '../css/Header.scss';
@@ -18,7 +20,13 @@ const Header = () => {
 
     const [alerteList, setAlerteList] = useState([]);  
 
-    const [usersList, setUsersList] = useState([]);
+    const [usersList, setUsersList] = useState([]); 
+
+    const [selectedUser, setSelectedUser] = useState(null);
+
+    const [selectedLevel, setSelectedLevel] = useState(null);
+
+    const [showModal, setShowModal] = useState(false);
 
     const getAlertes = async () => {
       const alert = await axios.get(api + "alertes");
@@ -35,11 +43,37 @@ const Header = () => {
 
     const nav = useNavigate();
 
-    const handleSubmit = (event) => {
+    const handleSubmit_Deco = (event) => {
         event.preventDefault();
         localStorage.clear();
         nav('/');
     }
+
+    const handleSubmit_FormAlerte = async (event) => {
+        event.preventDefault();
+        const currentDate = new Date()
+        
+        const body = {
+            Description: document.getElementById("textareaMission").value,
+            Niveau: selectedLevel,
+            DateHeure: currentDate.toISOString().slice(0, 19).replace('T', ' ') ,
+            idUtilisateur: selectedUser
+        }
+        await axios.post(api+"alertes", body);
+        console.log(body)
+        handleCloseModal();
+        getAlertes();
+    }
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+        document.getElementById("backGround").className = "modal-overlay"
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        document.getElementById("backGround").className = ""
+    };
 
     useEffect(() => {
         getAlertes();
@@ -76,6 +110,14 @@ const Header = () => {
                     ))}
                 </div>
                 </li>
+                <li className="nav-item">
+                    <div>
+                        <button onClick={handleOpenModal} id='btnAddAlerte'>Ajouter une alerte</button>
+                        {showModal && (
+                            <Modal content={<FormAlert handleSubmit={handleSubmit_FormAlerte} usersList={usersList} selectedLevel={selectedLevel} setSelectedLevel={setSelectedLevel} selectedUser={myObject.id} setSelectedUser={setSelectedUser} />} onClose={handleCloseModal}/>
+                        )}
+                    </div>
+                </li>
             </ul>
           );
         }
@@ -98,6 +140,14 @@ const Header = () => {
                         ))}
                     </div>
                     </li>
+                    <li className="nav-item">
+                    <div>
+                        <button onClick={handleOpenModal} id='btnAddAlerte'>Ajouter une alerte</button>
+                        {showModal && (
+                            <Modal content={<FormAlert handleSubmit={handleSubmit_FormAlerte} usersList={usersList} selectedLevel={selectedLevel} setSelectedLevel={setSelectedLevel} selectedUser={selectedUser} setSelectedUser={setSelectedUser} />} onClose={handleCloseModal}/>
+                        )}
+                    </div>
+                    </li>
                 </ul>
             );
         }
@@ -113,7 +163,7 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarColor03">
                     {verifAdmin()}
-                    <form className="d-flex" onSubmit={handleSubmit} id="logout">
+                    <form className="d-flex" onSubmit={handleSubmit_Deco} id="logout">
                         <button className="btn btn-secondary my-2 my-sm-0" type="submit"><img id='logOutBtn' src={LogOut} alt="logoLogout.svg"/></button>
                     </form>
                     </div>

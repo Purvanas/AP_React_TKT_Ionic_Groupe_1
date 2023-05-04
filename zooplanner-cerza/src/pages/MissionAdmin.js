@@ -187,6 +187,7 @@ const MissionAdmin = () => {
 
     return (
         <div>
+          <div id="backGround">
             <Header/>
           <h1>Liste des missions</h1>
           <div id="btnSwitchMissions">
@@ -194,6 +195,7 @@ const MissionAdmin = () => {
             {showValidatedMissions ?  "Voir missions validées" : "Voir missions en attente" }
           </button></div>
           {mission()}
+          </div>
         </div>
     );
 };

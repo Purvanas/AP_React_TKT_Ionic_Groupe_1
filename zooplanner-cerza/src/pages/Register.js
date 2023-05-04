@@ -164,8 +164,10 @@ const getFonction = async () => {
     
     return (
         <div>
+          <div id="backGround">
             <Header/>
             {FormRegister()}
+            </div>
         </div>
     );
 };

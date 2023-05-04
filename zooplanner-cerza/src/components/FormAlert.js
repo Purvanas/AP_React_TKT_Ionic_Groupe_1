@@ -1,6 +1,8 @@
 import React from 'react';
 
 const FormAlert = (props) => {
+  const myObject = JSON.parse(localStorage.getItem("currentUser"));
+
     var usersList = props.usersList
     var handleSubmit = props.handleSubmit
     var selectedUser = props.selectedUser
@@ -8,20 +10,36 @@ const FormAlert = (props) => {
     var selectedLevel = props.selectedLevel
     var setSelectedLevel = props.setSelectedLevel
     
+    const verifAdmin = () => {
+        if(myObject.Admin === 1){
+          return(
+            <select className="inputComboBoxForm2" type="select" id="Personnel" name="Personnel" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+                            <option value={null}>Personnel</option>
+                            {usersList.map((option) => (
+                                <option key={option.id} value={option.id}>
+                                {option.Nom} {option.Prenom}
+                                </option>
+                            ))}
+            </select>
+          )
+        }
+        else{
+          setSelectedUser(myObject.id);
+          return(
+            <select className="inputComboBoxForm2" type="select" id="Personnel" name="Personnel" value={myObject.id} onChange={(e) => setSelectedUser(e.target.value)}>
+              <option value={myObject.id}>{myObject.Nom} {myObject.Prenom}</option>
+            </select>
+          )
+        }
+      }
+
     return (
         <div>
            <form onSubmit={handleSubmit}>
                 <h1 style={{textAlign: 'center'}}>Ajouter une alerte</h1>
                 <div id="formAddAlert">
                 <p>Utilisateur : </p>
-                    <select className="inputComboBoxForm2" type="select" id="Personnel" name="Personnel" value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
-                                    <option value={null}>Personnel</option>
-                                    {usersList.map((option) => (
-                                        <option key={option.id} value={option.id}>
-                                        {option.Nom} {option.Prenom}
-                                        </option>
-                                    ))}
-                    </select>
+                {verifAdmin()}
                 <p>niveau de l'alerte :</p> 
                 <select className="inputComboBoxForm2" type="select" id="level" name="level" value={selectedLevel} onChange={(e) => setSelectedLevel(e.target.value)}>
                                     <option value={null}>Niveau</option>

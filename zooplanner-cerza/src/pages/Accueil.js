@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 
 
 //const res = await axios.get(`requete d'api`); /////FONCTION AXIOS.GET/////
@@ -24,8 +25,10 @@ import Header from '../components/Header';
 const Accueil = () => {
     return (
         <div>
+          <div id="backGround">
           <Header/>
           <h1>Accueil</h1>
+          </div>
         </div>
     );
 };
