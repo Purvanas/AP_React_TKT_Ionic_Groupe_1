@@ -29,7 +29,7 @@ const EncyclopedieCard = () => {
     };
     const handleChange = (event) => {
       event.preventDefault();
-      setEncyclopediesFilter(encyclopedies.filter(uneEncyclopedies => uneEncyclopedies.Libelle.toLowerCase().includes(event.target.value)));
+      setEncyclopediesFilter(encyclopedies.filter(uneEncyclopedies => uneEncyclopedies.Libelle.toLowerCase().includes(event.target.value.toLowerCase())));
 };
    
     return (
