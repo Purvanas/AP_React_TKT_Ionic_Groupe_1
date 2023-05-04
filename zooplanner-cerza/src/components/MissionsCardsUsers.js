@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-
+ 
 import axios from 'axios';
-
+ 
 const api = "http://localhost:8080/";
 let myObject = JSON.parse(localStorage.getItem("currentUser"));
 const MissionsCardsUsers = () => {
     const [missions, setMissions] = useState([]);
     console.log(myObject.id);
-
+ 
     useEffect(() => {
       try {     
       const fetchData = async () => {
@@ -22,8 +22,8 @@ const MissionsCardsUsers = () => {
     }, []);
    
     return (
-        <div>
-
+        <div className="missionCardUser">
+ 
             <ul>
                 {missions.map(mission => <li key={mission.id}> <div className='CardMissionsUsersMainDiv'>
                 <div className='CardMissionsUsersHeadDiv'>
@@ -48,7 +48,7 @@ const MissionsCardsUsers = () => {
     </div>
         
     );
-
+ 
 }
-
+ 
 export default MissionsCardsUsers;

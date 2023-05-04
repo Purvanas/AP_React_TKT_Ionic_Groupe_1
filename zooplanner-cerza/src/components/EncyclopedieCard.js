@@ -4,9 +4,9 @@ import '../css/style.scss';
 import '../css/EncyclopedieCard.scss';
 import FicheEspece from '../pages/FicheEspece';
 import { useNavigate } from "react-router-dom";
-
+ 
 const api = "http://localhost:8080/";
-
+ 
 const EncyclopedieCard = () => {
     const navigate = useNavigate();
     const [encyclopedies, setEncyclopedies] = useState([]);
@@ -33,18 +33,18 @@ const EncyclopedieCard = () => {
 };
    
     return (
-      <div>
+      <div className="encyclopedieCards">
         <div className="searchDiv">
             <input type={Text} onChange={handleChange} placeholder="Recherche..."></input>
         </div>
         <div className="cards">
               {encyclopediesFilter.map(encyclopedie => 
                 
-                  <div class="card" onClick={() => handleCardClick(encyclopedie.id)}>
-                    <div class="container">
-                        <img src={require(`../Img/${encyclopedie.lienImg}`)} />
+                  <div className="card" onClick={() => handleCardClick(encyclopedie.id)}>
+                    <div className="containerAnimal">
+                        <img className="AnimalCard" src={require(`../Img/${encyclopedie.lienImg}`)} />
                     </div>
-                    <div class="details">
+                    <div className="details">
                         <h3>Espece : {encyclopedie.Libelle}</h3>
                         <p>Enclos : {encyclopedie.idEnclos}</p>
                     </div>
@@ -53,7 +53,7 @@ const EncyclopedieCard = () => {
         </div>
       </div>  
     );
-
+ 
 }
-
+ 
 export default EncyclopedieCard;

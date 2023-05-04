@@ -1,4 +1,4 @@
-body{
+.missionCardUser{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(600px,800px));
     padding: 20px;
@@ -10,14 +10,13 @@ body{
     margin-right: auto;
     align-items: center;
     font-family: 'Poppins',sans-serif;
-}
-
-*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+
+ 
 .CardMissionsUsersMainDiv{
     width: 80%;
     display: grid;
@@ -25,10 +24,10 @@ body{
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
-
+ 
     
 }
-
+ 
 .CardMissionsUsersHeadDiv {
     padding: 5px;
     background-color: #F5A254;
@@ -38,7 +37,7 @@ body{
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-
+ 
 .CardMissionsUsersBodyDiv {
     margin-top: 0px;
     padding: 15px;
@@ -47,27 +46,26 @@ body{
 }
 
 
-
+ 
     
 .CardMissionsUsersTdDate {
     grid-area: 1 / 1 / 2 / 2; 
     
     text-align: center;
 }
-
+ 
 .CardMissionsUsersTdEnclos {
     grid-area: 1 / 2 / 2 / 3;
     
     text-align: center;
 }
-
-
+ 
 .CardMissionsUsersTdAnimal {
     grid-area: 1 / 3 / 2 / 5;
     
     text-align: center;
 }
-
+ 
 .CardMissionsUsersButton{
     background-color: white;
     border: 0px;
@@ -75,7 +73,7 @@ body{
     height: 30px;
     width: 100px;
 }
-
+ 
 .CardMissionsUsersButton:hover{
     background-color: #32cd32;
     border: 0px;
@@ -83,7 +81,7 @@ body{
     height: 30px;
     width: 100px;
 }
-
+ 
 ul {
     list-style-type: none;
   }
