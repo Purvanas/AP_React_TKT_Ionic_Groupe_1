@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import '../css/style.scss';
 import '../css/EncyclopedieFiche.scss';
 
+import Header from '../components/Header';
+
 const api = "http://localhost:8080/";
 
 const FicheEspece = () => {
@@ -25,32 +27,38 @@ const FicheEspece = () => {
   
     
     return (
+      <div>
+        <div id="backGround">
+      <Header/>
         <div className='divFicheEncycloAll'>
-            
-            {encyclopedies.map(encyclopedie => 
-                
-                <div>
-                    <div className="divFicheEncyclo">
-                      <img src={require(`../Img/${encyclopedie.lienImg}`)} />
-                    </div>
-                      <h1>{encyclopedie.Libelle}</h1><br />
-                    <div className='divGridFicheEncyclo'>
-                    <div className='divFactFicheEncyclo'>
-                      <a>Taille : {encyclopedie.tailleMin}-{encyclopedie.tailleMax} cm</a><br /><br />
-                      <a>Poids : {(encyclopedie.poidsMin)/1000}-{(encyclopedie.poidsMax)/1000} kg</a><br /><br />
-                      <a>Régime alimentaire : {encyclopedie.Regime}</a><br /><br />
-                      <a>Espérance de vie : {encyclopedie.duréeVie} ans</a><br /><br />
-                      <a>Durée de gestation : {(encyclopedie.dureeGestationJours)/30} mois </a><br /><br />
-                      <a>Enclos : {encyclopedie.idEnclos}</a><br /><br />
-                    </div>
-                    <div className='divDesciptionFicheEncyclo'>
-                      <a>Description : {encyclopedie.Description}</a><br />
-                    </div>
-                  </div>
-              </div>
-            )}
-           
+
+{encyclopedies.map(encyclopedie => 
+         <div>
+        <div className="divFicheEncyclo">
+          <img className='animal' src={require(`../Img/${encyclopedie.lienImg}`)} />
         </div>
+          <h1>{encyclopedie.Libelle}</h1> 
+        <div className='divGridFicheEncyclo'>
+        <div className='divFactFicheEncyclo'>
+          <p className="infoAnimal">Taille : {encyclopedie.tailleMin}-{encyclopedie.tailleMax} cm</p>  
+          <p className="infoAnimal">Poids : {(encyclopedie.poidsMin)/1000}-{(encyclopedie.poidsMax)/1000} kg</p>  
+          <p className="infoAnimal">Régime alimentaire : {encyclopedie.Regime}</p>  
+          <p className="infoAnimal">Espérance de vie : {encyclopedie.duréeVie} ans</p>  
+          <p className="infoAnimal">Durée de gestation : {(encyclopedie.dureeGestationJours)/30} mois </p>  
+          <p className="infoAnimal">Enclos : {encyclopedie.idEnclos}</p>  
+        </div>
+        <div className='divDesciptionFicheEncyclo'>
+          <p className="infoAnimal">Description : {encyclopedie.Description}</p> 
+        </div>
+      </div>
+      </div>
+  
+  
+)}
+</div>
+</div>
+</div>
+        
     );
 };
 export default FicheEspece;

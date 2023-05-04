@@ -1,27 +1,17 @@
-body{
+.divFicheEncycloAll{
     display: grid;
     object-fit: cover;
     width: 100%;
     min-width: 630px;
     align-items: center;
 }
-*{
-    margin: 0;
-    min-width: 630px;
-
-}
-.divGridFicheEncyclo{
-    
-        display: grid;
-        grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-
-}
-a{
+ 
+.infoAnimal{
     margin-top: 2%;
     margin-bottom: 2%;
 }
-
-img{
+ 
+.animal{
     width: 100%;
     border-radius: 0px 0px 0 0;
     object-fit: cover; /* ensure the image covers the entire space without distorting */
@@ -31,19 +21,14 @@ img{
     overflow: hidden;
 }
 .divGridFicheEncyclo{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: top;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));    
 }
-
+ 
 .divFicheEncycloAll{
-    width: 96vw;
-    
-
+    width: 94%; 
 }
 .divFicheEncycloAll {
-    margin: 0;
-    padding: 0;
+    margin-left: 3%;
+    margin-right: 3%;
   }
