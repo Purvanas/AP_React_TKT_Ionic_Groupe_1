@@ -31,7 +31,6 @@ const Accueil = () => {
         <div>
           <div id="backGround">
           <Header/>
-          <h1>Accueil</h1>
           <div className='MissionsUsersMainDiv'>
             <MissionsCardsUsers/>
           </div>
