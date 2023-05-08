@@ -139,7 +139,7 @@ app.get("/EncyclopedieCard", (req, res) => {
 
 app.get("/UsersMissions", (req, res) => {
     const idUtilisateur = req.query.idUtilisateur; // récupérer la valeur de idUtilisateur à partir des paramètres de requête
-    let sql = "SELECT mission.id, mission.idEnclos, idAnimal, Nom, Description, DateHeureAttribution FROM mission LEFT JOIN animal on animal.id=idAnimal WHERE mission.idUtilisateur=?; ";
+    let sql = "SELECT mission.id, mission.idEnclos, idAnimal, Nom, Description, DateHeureAttribution, DateHeureValidation FROM mission LEFT JOIN animal on animal.id=idAnimal WHERE mission.idUtilisateur=?; ";
     config.query(sql,[idUtilisateur],(err, results) =>{
         if(err) throw err
         console.log(results);
@@ -208,6 +208,22 @@ app.post('/alertes', (req,res) => {
     })
 })
 
+app.put('/missionDateValid/:id', (req,res) => {    
+    console.log("Body : ",req.body)
+    const data = {
+        DateHeureValidation : req.body.DateHeureValidation,
+
+    }
+    let sql = "UPDATE `mission` SET `DateHeureValidation` = ? WHERE `id` = ?;";
+    config.query(sql, [...Object.values(data), req.params.id], (err) =>{
+        if(err){
+            console.log(data);
+            res.json({message : "fail", Error : err});
+        }else{
+            res.json({message : "nice", Data : data});
+        }
+    })
+})
 
 /////// ROUTES PUT ET PACTH //////////////////////////////
 app.put('/alertes/:id', (req,res) => {    
