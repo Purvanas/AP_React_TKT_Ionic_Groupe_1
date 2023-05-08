@@ -20,7 +20,22 @@ const MissionsCardsUsers = () => {
       console.error(error);
     }
     }, []);
-   
+
+    const handleSubmit = async (id) => {
+        const currentDate = new Date();
+      
+        const data = {
+          DateHeureValidation: currentDate.toISOString().slice(0, 19).replace('T', ' ')
+        };
+        
+        try {
+          await axios.put(api + 'missionDateValid/' + id, data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+
     return (
         <div className="missionCardUser">
  
@@ -41,7 +56,8 @@ const MissionsCardsUsers = () => {
                     <p>
                         {mission.Description}
                     </p>
-                    <button className='CardMissionsUsersButton'>Terminer</button>
+                    {mission.DateHeureValidation ? <a>Terminer le {new Date(mission.DateHeureValidation).toLocaleString()}</a> : <button className='CardMissionsUsersButton' onClick={() => handleSubmit(mission.id)}>Terminer</button>}
+                    
                 </div>
                 </div></li>)}
         </ul>
