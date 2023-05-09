@@ -5,6 +5,7 @@ import MissionAdmin from "./pages/MissionAdmin";
 import Register from "./pages/Register";
 import AlerteAdmin from "./pages/AlerteAdmin";
 import EncyclopedieSearch from "./pages/EncyclopedieSearch";
+import EtatsAnimaux from "./pages/EtatsAnimaux";
 import FicheEspece from "./pages/FicheEspece";
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/MissionAdmin" element={<MissionAdmin/>}></Route>
         <Route path="/AlertesAdmin" element={<AlerteAdmin/>}></Route>
         <Route path="/RechercheEncyclopedie" element={<EncyclopedieSearch/>}></Route>
+        <Route path="/etatAnimaux" element={<EtatsAnimaux/>}></Route>
         <Route path="/FicheEncyclopedie/:idEspece" element={<FicheEspece/>}></Route>
 
       </Routes>
