@@ -39,10 +39,24 @@ app.get("/fonctions", (req, res) => {
 app.get("/", (req, res) => {
     res.json({ message: "ok" });
 });
+
 app.get("/animaux", (req, res) => {
-    let sql = "SELECT id, idEnclos, Nom FROM animal";
+    let sql = "SELECT id, idEnclos, Nom, Age, Poids, Taille, Etat, lienImg FROM animal";
     config.query(sql,(err, results) =>{
         if(err) throw err
+        console.log(results);
+        res.json({results});
+    })
+});
+
+app.put("/Etat", (req, res) => {
+    const data = {
+        Etat : req.body.Etat,
+        id : req.body.id,
+    }
+    let sql = "Update animal set Etat = ? where id = ?";
+    config.query(sql, Object.values(data), (err, results) =>{
+        if(err) throw err;
         console.log(results);
         res.json({results});
     })
